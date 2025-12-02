@@ -1,0 +1,789 @@
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        /* Using DomPDF's built-in DejaVu Sans for better Czech character support */
+
+        /* Page setup for A4 */
+        @page {
+            margin: 15mm 15mm 5mm 15mm;
+            size: A4 portrait;
+        }
+
+
+
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DejaVu Sans', sans-serif;
+            font-size: 10pt;
+            line-height: 1.4;
+            color: #1d1d1f;
+            background: #ffffff;
+            padding: 0 8mm;
+            margin: 0;
+            counter-reset: page 0;
+        }
+
+        /* Header Section */
+        .header {
+            margin-top: 4mm;
+            margin-bottom: 6mm;
+            padding-bottom: 3mm;
+            border-bottom: 1pt solid #cccccc;
+        }
+
+        .header-content {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .header-left {
+            display: table-cell;
+            width: 65%;
+            vertical-align: middle;
+            padding-right: 5mm;
+        }
+
+        .header-right {
+            display: table-cell;
+            width: 35%;
+            vertical-align: middle;
+            text-align: right;
+        }
+
+        .page-title {
+            font-size: 18pt;
+            font-weight: 800;
+            color: #1d1d1f;
+            margin-bottom: 2mm;
+            letter-spacing: -0.02em;
+        }
+
+        .page-subtitle {
+            font-size: 14pt;
+            color: #6d6d70;
+            font-weight: 500;
+            margin-bottom: 3mm;
+        }
+
+        .customer-details {
+            font-size: 10pt;
+            color: #8e8e93;
+            line-height: 1.4;
+        }
+
+        .customer-info-row {
+            margin-bottom: 1mm;
+        }
+
+        .customer-label {
+            font-weight: 600;
+            color: #6d6d70;
+            display: inline-block;
+            min-width: 20mm;
+            vertical-align: top;
+        }
+
+        .customer-value {
+            color: #1d1d1f;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .logo {
+            max-width: 100%;
+            max-height: 20mm;
+            display: block;
+            margin-left: auto;
+        }
+
+        /* Product Section */
+        .product-section {
+            margin-top: 20mm;
+            margin-bottom: 8mm;
+            page-break-before: auto;
+            page-break-inside: auto;
+            orphans: 2;
+            widows: 2;
+        }
+
+        .product-header {
+            display: table;
+            width: 100%;
+            margin-bottom: 2mm;
+            table-layout: fixed;
+            page-break-after: avoid; /* Keep header with following content */
+            page-break-inside: auto;
+        }
+
+        .product-title {
+            display: table-cell;
+            width: 70%;
+            font-size: 17pt;
+            font-weight: 700;
+            color: #1d1d1f;
+            vertical-align: middle;
+            letter-spacing: -0.01em;
+        }
+
+        .product-price {
+            display: table-cell;
+            width: 30%;
+            font-size: 16pt;
+            font-weight: 700;
+            color: #1d1d1f;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        /* Product Gallery */
+        .product-gallery {
+            margin-bottom: 3mm;
+            page-break-before: avoid; /* Keep gallery with header */
+            page-break-inside: auto;
+        }
+
+        .primary-image {
+            width: 100%;
+            height: 110mm;
+            margin-bottom: 3mm;
+            border-radius: 3mm;
+            box-shadow: 0 1mm 3mm rgba(0, 0, 0, 0.1);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #ffffff;
+            page-break-inside: avoid; /* Keep - large image needs protection */
+        }
+
+        .secondary-images {
+            width: 100%;
+        }
+
+        .secondary-row {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            page-break-inside: auto;
+        }
+
+        .secondary-item {
+            display: table-cell;
+            width: 33.33%;
+            text-align: center;
+            padding: 0 1.5mm;
+            page-break-inside: avoid;
+        }
+
+        .secondary-item-container {
+            width: 100%;
+            height: 58mm;
+            border-radius: 2mm;
+            box-shadow: 0 0.5mm 2mm rgba(0, 0, 0, 0.08);
+            display: inline-block;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+
+
+        /* Product Description */
+        .product-description {
+            margin-bottom: 3mm;
+            font-size: 10pt;
+            line-height: 1.4;
+            text-align: justify;
+            orphans: 2;
+            widows: 2;
+            page-break-inside: auto;
+        }
+
+        /* Information Section */
+        .info-section {
+            margin-bottom: 4mm;
+            page-break-before: auto;
+            page-break-inside: auto;
+        }
+
+        .info-title {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 2mm;
+            page-break-after: auto;
+            page-break-inside: auto;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background-color: #f8f9fa;
+            border-radius: 2.5mm;
+            overflow: hidden;
+            box-shadow: 0 0.5mm 2mm rgba(0, 0, 0, 0.05);
+            page-break-inside: avoid; /* Keep - tables should stay together */
+        }
+
+        .info-table tr:nth-child(even) {
+            background-color: #f1f3f4;
+        }
+
+        .info-table tr:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+
+        .info-table tr:first-child td:first-child {
+            border-top-left-radius: 2.5mm;
+        }
+
+        .info-table tr:first-child td:last-child {
+            border-top-right-radius: 2.5mm;
+        }
+
+        .info-table tr:last-child td:first-child {
+            border-bottom-left-radius: 2.5mm;
+        }
+
+        .info-table tr:last-child td:last-child {
+            border-bottom-right-radius: 2.5mm;
+        }
+
+        .info-table td {
+            padding: 3mm 4mm;
+            border: none;
+        }
+
+        .info-key {
+            font-weight: 600;
+            width: 40%;
+            color: #6d6d70;
+            font-size: 10pt;
+        }
+
+        .info-value {
+            width: 60%;
+            color: #1d1d1f;
+            font-size: 10pt;
+            font-weight: 500;
+        }
+
+        /* Pieces Section */
+        .pieces-section {
+            margin-bottom: 3mm;
+            page-break-before: auto;
+            page-break-inside: auto;
+        }
+
+        .section-title {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 2mm;
+            page-break-after: auto;
+            page-break-inside: auto;
+        }
+
+        .piece-item {
+            margin-bottom: 3mm;
+            page-break-before: auto;
+            page-break-inside: auto;
+            orphans: 2;
+            widows: 2;
+        }
+
+        .piece-title {
+            font-size: 12pt;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 2mm;
+            page-break-after: auto;
+            page-break-inside: auto;
+        }
+
+        /* Piece Gallery */
+        .piece-gallery {
+            margin-bottom: 2mm;
+            text-align: center;
+            page-break-before: auto;
+            page-break-inside: auto;
+        }
+
+        .piece-images-row {
+            display: inline-block;
+            text-align: center;
+            page-break-inside: auto;
+        }
+
+        .piece-image-item {
+            display: inline-block;
+            text-align: center;
+            margin: 0 2mm;
+            vertical-align: top;
+            page-break-inside: avoid;
+        }
+
+        .piece-image-container {
+            width: 58mm;
+            height: 58mm;
+            border-radius: 3mm;
+            box-shadow: 0 1mm 3mm rgba(0, 0, 0, 0.08);
+            margin: 0 auto 3mm auto;
+            display: block;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #ffffff;
+        }
+
+        .image-caption {
+            font-size: 9pt;
+            color: #6d6d70;
+            font-weight: 400;
+            text-align: center;
+            margin-top: 2mm;
+            line-height: 1.3;
+            font-style: italic;
+        }
+
+        /* Piece Description */
+        .piece-description {
+            margin: 5mm 0 6mm 0;
+            font-size: 10pt;
+            line-height: 1.5;
+            text-align: justify;
+            color: #1d1d1f;
+            orphans: 2;
+            widows: 2;
+        }
+
+        /* Materials Section */
+        .materials-section {
+            margin-bottom: 3mm;
+            page-break-before: auto;
+            page-break-inside: auto;
+        }
+
+        .materials-grid {
+            width: 100%;
+            text-align: center;
+        }
+
+        .materials-row {
+            display: table;
+            margin: 0 auto;
+            table-layout: fixed;
+            margin-bottom: 2mm;
+            page-break-inside: auto;
+        }
+
+        .materials-row.two-items {
+            width: 50%;
+        }
+
+        .materials-row.three-items {
+            width: 75%;
+        }
+
+        .materials-row.four-items {
+            width: 100%;
+        }
+
+        .material-card {
+            display: table-cell;
+            padding: 0 2mm;
+            vertical-align: top;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        .material-card-container {
+            border: 1pt solid #e5e5e7;
+            border-radius: 3mm;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        .material-image {
+            width: 100%;
+            height: 45mm;
+            background-color: #f8f9fa;
+            display: block;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .material-image img {
+            max-width: 100%;
+            max-height: 45mm;
+            width: auto;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .material-info {
+            background: #ffffff;
+            padding: 2mm;
+            border-top: 1pt solid #e5e5e7;
+        }
+
+        .material-name {
+            font-size: 9pt;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 0.5mm;
+            line-height: 1.2;
+        }
+
+        .material-color {
+            font-size: 8pt;
+            color: #6d6d70;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        /* Product Separator */
+        .product-separator {
+            height: 0.5pt;
+            background-color: #e5e5e7;
+            margin: 10mm 0;
+            border-radius: 0.25pt;
+        }
+
+        /* Utility classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        /* Footer Styles - Website style, bottom of last page only */
+        .footer {
+            margin-top: 8mm;
+            padding: 6mm 0;
+            border-top: 0.5pt solid #e5e5e7;
+            font-family: 'DejaVu Sans', sans-serif;
+            font-size: 8pt;
+            color: #8e8e93;
+            line-height: 1.4;
+            background: #ffffff;
+            page-break-inside: avoid; /* Keep footer together */
+            page-break-before: auto; /* Allow natural flow to last page */
+            position: relative; /* Normal document flow */
+        }
+
+        .footer-section {
+            margin-bottom: 4mm;
+        }
+
+        .footer-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer-divider {
+            height: 0.5pt;
+            background-color: #e5e5e7;
+            margin: 3mm 0;
+            width: 100%;
+        }
+
+        .company-info {
+            text-align: left;
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: #6d6d70;
+            margin-bottom: 1mm;
+        }
+
+        .company-details {
+            color: #8e8e93;
+            line-height: 1.3;
+        }
+
+        .company-details p {
+            margin-bottom: 0.5mm;
+        }
+
+        .company-details p.italic {
+            font-style: italic;
+        }
+
+        .showroom-title {
+            text-align: center;
+            font-size: 10pt;
+            font-weight: 600;
+            color: #6d6d70;
+            text-transform: uppercase;
+            letter-spacing: 0.5pt;
+            margin: 2mm 0;
+        }
+
+        .showroom-title-container {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            margin: 3mm 0;
+        }
+
+        .showroom-divider-left {
+            display: table-cell;
+            vertical-align: middle;
+            width: 20%;
+        }
+
+        .showroom-divider-right {
+            display: table-cell;
+            vertical-align: middle;
+            width: 20%;
+        }
+
+        .showroom-title-cell {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            width: 60%;
+            padding: 0 3mm;
+        }
+
+        .showroom-divider-line {
+            height: 0.5pt;
+            background-color: #e5e5e7;
+            width: 100%;
+        }
+
+        .contact-info {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        .contact-column {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            padding-right: 1.5mm;
+            width: 25%;
+        }
+
+        .contact-column:last-child {
+            padding-right: 0;
+        }
+
+        .contact-column p {
+            margin-bottom: 0;
+            white-space: nowrap;
+            font-size: 7pt;
+        }
+
+        .bold {
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        /* Page Numbers */
+        .page-number {
+            position: fixed;
+            bottom: 6mm;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'DejaVu Sans', sans-serif;
+            font-size: 9pt;
+            color: #8e8e93;
+            font-weight: 500;
+            z-index: 1001;
+        }
+
+        .page-number::after {
+            content: counter(page);
+        }
+
+        /* First product section - less space after header */
+        .product-section.first-section {
+            page-break-before: auto;
+            margin-top: 8mm;
+        }
+
+        /* Subsequent product sections - more space */
+        .product-section.subsequent-section {
+            page-break-before: always;
+            margin-top: 12mm;
+            min-height: 15mm;
+        }
+
+        /* Protect only large content blocks */
+        .product-section {
+            page-break-inside: auto; /* Allow breaking for better space usage */
+        }
+
+        /* Keep large images together */
+        .primary-image {
+            page-break-inside: avoid; /* Large 110mm image needs protection */
+        }
+
+        /* Keep secondary images with primary image */
+        .secondary-images {
+            page-break-before: avoid; /* Prevent break before secondary images */
+        }
+
+        .primary-image + .secondary-images {
+            page-break-before: avoid; /* Prevent break between primary and secondary */
+        }
+
+        /* Keep secondary image row together */
+        .secondary-row {
+            page-break-inside: avoid; /* Keep secondary images together */
+        }
+
+        /* Keep tables together */
+        .info-table {
+            page-break-inside: avoid; /* Tables should stay together */
+        }
+
+        /* Keep info section header with its table */
+        .info-title {
+            page-break-after: avoid; /* Prevent break after title */
+        }
+
+        .info-title + .info-table {
+            page-break-before: avoid; /* Prevent break before table */
+        }
+
+        /* Keep product header with gallery */
+        .product-header + .product-gallery {
+            page-break-before: avoid; /* Prevent break between header and gallery */
+        }
+
+        /* Efficient content flow */
+        .product-gallery + .product-description {
+            page-break-before: auto; /* Allow natural flow */
+        }
+
+        /* Compact spacing for better density */
+        .piece-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .materials-row:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Simple header protection - keep with following content */
+        .section-title {
+            page-break-after: avoid;
+        }
+
+        .piece-title {
+            page-break-after: avoid;
+        }
+
+        /* Optimize spacing for better density */
+        .product-section {
+            margin-top: 20mm;
+            margin-bottom: 8mm;
+        }
+
+        .piece-item {
+            margin-bottom: 3mm;
+        }
+
+        .materials-row {
+            margin-bottom: 2mm;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Page Numbers -->
+    <div class="page-number"></div>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="page-title">Cenová nabídka</div>
+                <div class="page-subtitle">{{customer_name}}</div>
+                
+                <div class="customer-details">
+                    {{customer_email_row}}
+                    {{customer_phone_row}}
+                    {{customer_address_row}}
+                    {{customer_company_row}}
+                </div>
+            </div>
+            <div class="header-right">
+                <img class="logo" src="{{logo_path}}" alt="Carelli Logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content - Direct body replacement -->
+    {{body}}
+
+    <!-- Footer -->
+    <div class="footer">
+        <!-- Company Legal Information -->
+        <div class="footer-section company-info">
+            <div class="company-name">CARELLI nábytek spol. s r.o.</div>
+            <div class="company-details">
+                <p>IČ: 25231553</p>
+                <p>Vrbenská 2044/6, České Budějovice 5, 370 01 České Budějovice</p>
+                <p class="italic">Spisová značka C 16136 vedená u Krajského soudu v Českých Budějovicích</p>
+            </div>
+        </div>
+
+        <!-- Showroom Title with Side Dividers -->
+        <div class="footer-section">
+            <div class="showroom-title-container">
+                <div class="showroom-divider-left">
+                    <div class="showroom-divider-line"></div>
+                </div>
+                <div class="showroom-title-cell">
+                    <div class="showroom-title">Showroom Luxusního Nábytku</div>
+                </div>
+                <div class="showroom-divider-right">
+                    <div class="showroom-divider-line"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="footer-section">
+            <div class="contact-info">
+                <div class="contact-column">
+                    <p>U Elektry 974/1c, 190 00 Praha</p>
+                </div>
+                <div class="contact-column">
+                    <p>Info@carelli.cz</p>
+                </div>
+                <div class="contact-column">
+                    <p>www.carelli.cz</p>
+                </div>
+                <div class="contact-column">
+                    <p>tel. 777 883 500-1</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

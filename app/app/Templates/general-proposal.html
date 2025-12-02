@@ -1,0 +1,2289 @@
+<!DOCTYPE html>
+<html class="no-js" lang="cs">
+
+<head>
+  <!-- Meta Tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="ThemeMarch">
+  <!-- Site Title -->
+  <title>Carelli - Cenová nabídka</title>
+  <style type="text/css">
+    @page {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Include Inter font definitions */
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400;
+      src: url('Inter-Regular.otf') format('opentype');
+    }
+
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 600;
+      src: url('Inter-SemiBold.otf') format('opentype');
+    }
+
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 700;
+      src: url('Inter-Bold.otf') format('opentype');
+    }
+
+    /* Fallback font stack */
+    body {
+      font-family: 'Inter', 'DejaVu Sans', 'Liberation Sans', Arial, sans-serif !important;
+    }
+
+    /* Custom Sections Styling - Exactly like Pretty Proposal */
+    .cs-custom-section {
+      margin-top: 20mm;
+      margin-bottom: 8mm;
+      page-break-before: always;
+      page-break-inside: avoid;
+    }
+
+    .cs-section-header {
+      display: table;
+      width: 100%;
+      margin-bottom: 3mm;
+      table-layout: fixed;
+      page-break-after: avoid;
+    }
+
+    .cs-section-title {
+      display: table-cell;
+      width: 100%;
+      font-size: 14pt;
+      font-weight: 700;
+      color: #1d1d1f;
+      vertical-align: middle;
+      letter-spacing: -0.01em;
+      font-family: 'DejaVu Sans', sans-serif;
+    }
+
+    .cs-section-images {
+      margin-bottom: 6mm;
+      page-break-before: avoid;
+    }
+
+    .cs-image-container {
+      width: 100%;
+      min-height: 110mm;
+      margin-bottom: 4mm;
+      border: 1px solid #ddd;
+      display: table;
+      text-align: center;
+    }
+
+    .cs-image-container img {
+      max-width: 100%;
+      max-height: 110mm;
+      width: auto;
+      height: auto;
+      border-radius: 3mm;
+    }
+
+    /* Custom section images without border */
+    .cs-custom-image-container {
+      width: 100%;
+      min-height: 110mm;
+      margin-bottom: 4mm;
+      display: table;
+      text-align: center;
+    }
+
+    .cs-custom-image-container img {
+      max-width: 100%;
+      max-height: 110mm;
+      width: auto;
+      height: auto;
+      border-radius: 3mm;
+    }
+
+    .cs-image-description {
+      margin-bottom: 4mm;
+      font-size: 8pt;
+      line-height: 1.4;
+      text-align: justify;
+      font-family: 'DejaVu Sans', sans-serif;
+      color: #1d1d1f;
+    }
+
+    /* Page break rules for better PDF layout - DOMPDF compatible */
+    table {
+      page-break-inside: auto;
+    }
+
+    tr {
+      page-break-inside: avoid;
+      page-break-after: auto;
+    }
+
+    td,
+    th {
+      page-break-inside: avoid;
+      page-break-after: auto;
+    }
+
+    .cs-invoice_footer {
+      page-break-inside: avoid;
+    }
+
+    /* Keep footer section together (showroom info and processed by info) */
+    .cs-invoice_head.cs-mb10 {
+      page-break-inside: avoid;
+    }
+
+    /* Ensure white background extends to bottom of each page */
+    .cs-invoice.cs-style1 {
+      min-height: 100vh;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    /* Ensure proper spacing */
+    @media print {
+      .cs-custom-section {
+        page-break-inside: avoid !important;
+        margin-top: 20mm !important;
+        margin-bottom: 8mm !important;
+      }
+
+      table {
+        page-break-inside: auto !important;
+      }
+
+      tr {
+        page-break-inside: avoid !important;
+        page-break-after: auto !important;
+      }
+
+      td,
+      th {
+        page-break-inside: avoid !important;
+        page-break-after: auto !important;
+      }
+
+      .cs-invoice_footer {
+        page-break-inside: avoid !important;
+      }
+
+      .cs-invoice_head.cs-mb10 {
+        page-break-inside: avoid !important;
+      }
+
+      .cs-invoice.cs-style1 {
+        min-height: 100vh !important;
+        box-decoration-break: clone !important;
+        -webkit-box-decoration-break: clone !important;
+      }
+    }
+
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+    }
+
+    html {
+      line-height: 1.15;
+      -webkit-text-size-adjust: 100%;
+    }
+
+
+    /* Sections
+   ========================================================================== */
+
+
+    /**
+ * Remove the margin in all browsers.
+ */
+
+    body {
+      margin: 0;
+      padding: 0 2mm;
+    }
+
+
+    /**
+ * Render the `main` element consistently in IE.
+ */
+
+    main {
+      display: block;
+    }
+
+
+    /**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+    h1 {
+      font-size: 2em;
+      margin: 0.67em 0;
+    }
+
+
+    /* Grouping content
+   ========================================================================== */
+
+
+    /**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+    hr {
+      box-sizing: content-box;
+      /* 1 */
+      height: 0;
+      /* 1 */
+      overflow: visible;
+      /* 2 */
+    }
+
+
+    /**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+    pre {
+      font-family: monospace, monospace;
+      /* 1 */
+      font-size: 1em;
+      /* 2 */
+    }
+
+
+    /* Text-level semantics
+   ========================================================================== */
+
+
+    /**
+ * Remove the gray background on active links in IE 10.
+ */
+
+    a {
+      background-color: transparent;
+    }
+
+
+    /**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+    abbr[title] {
+      border-bottom: none;
+      /* 1 */
+      text-decoration: underline;
+      /* 2 */
+      -webkit-text-decoration: underline dotted;
+      text-decoration: underline dotted;
+      /* 2 */
+    }
+
+
+    /**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+    b,
+    strong {
+      font-weight: bolder;
+    }
+
+
+    /**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+    code,
+    kbd,
+    samp {
+      font-family: monospace, monospace;
+      /* 1 */
+      font-size: 1em;
+      /* 2 */
+    }
+
+
+    /**
+ * Add the correct font size in all browsers.
+ */
+
+    small {
+      font-size: 80%;
+    }
+
+
+    /**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+    sub,
+    sup {
+      font-size: 75%;
+      line-height: 0;
+      position: relative;
+      vertical-align: baseline;
+    }
+
+    sub {
+      bottom: -0.25em;
+    }
+
+    sup {
+      top: -0.5em;
+    }
+
+
+    /* Embedded content
+   ========================================================================== */
+
+
+    /**
+ * Remove the border on images inside links in IE 10.
+ */
+
+    img {
+      border-style: none;
+    }
+
+
+    /* Forms
+   ========================================================================== */
+
+
+    /**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      /* 1 */
+      font-size: 100%;
+      /* 1 */
+      line-height: 1.15;
+      /* 1 */
+      margin: 0;
+      /* 2 */
+    }
+
+
+    /**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+    button,
+    input {
+      /* 1 */
+      overflow: visible;
+    }
+
+
+    /**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+    button,
+    select {
+      /* 1 */
+      text-transform: none;
+    }
+
+
+
+
+ 
+
+
+    /**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+    button:-moz-focusring,
+    [type=button]:-moz-focusring,
+    [type=reset]:-moz-focusring,
+    [type=submit]:-moz-focusring {
+      outline: 1px dotted ButtonText;
+    }
+
+
+    /**
+ * Correct the padding in Firefox.
+ */
+
+    fieldset {
+      padding: 0.35em 0.75em 0.625em;
+    }
+
+
+    /**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+    legend {
+      box-sizing: border-box;
+      /* 1 */
+      color: inherit;
+      /* 2 */
+      display: table;
+      /* 1 */
+      max-width: 100%;
+      /* 1 */
+      padding: 0;
+      /* 3 */
+      white-space: normal;
+      /* 1 */
+    }
+
+
+    /**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+    progress {
+      vertical-align: baseline;
+    }
+
+
+    /**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+    textarea {
+      overflow: auto;
+    }
+
+
+    /**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+    [type=checkbox],
+    [type=radio] {
+      box-sizing: border-box;
+      /* 1 */
+      padding: 0;
+      /* 2 */
+    }
+
+
+    /**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+    [type=number]::-webkit-inner-spin-button,
+    [type=number]::-webkit-outer-spin-button {
+      height: auto;
+    }
+
+
+    /**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+    [type=search] {
+      -webkit-appearance: textfield;
+      /* 1 */
+      outline-offset: -2px;
+      /* 2 */
+    }
+
+
+    /**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+    [type=search]::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+
+
+    /**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+    ::-webkit-file-upload-button {
+      -webkit-appearance: button;
+      /* 1 */
+      font: inherit;
+      /* 2 */
+    }
+
+
+    /* Interactive
+   ========================================================================== */
+
+
+    /*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+    details {
+      display: block;
+    }
+
+
+    /*
+ * Add the correct display in all browsers.
+ */
+
+    summary {
+      display: list-item;
+    }
+
+
+    /* Misc
+   ========================================================================== */
+
+
+    /**
+ * Add the correct display in IE 10+.
+ */
+
+    template {
+      display: none;
+    }
+
+
+    /**
+ * Add the correct display in IE 10.
+ */
+
+    [hidden] {
+      display: none;
+    }
+
+
+    /*--------------------------------------------------------------
+2. Typography
+----------------------------------------------------------------*/
+
+    body,
+    html {
+      color: #777777;
+      font-family: "Inter", "DejaVu Sans", "Liberation Sans", Arial, sans-serif !important;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.5em;
+      overflow-x: hidden;
+      background-color: #ffffff;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      clear: both;
+      color: #111111;
+      padding: 0;
+      margin: 0 0 20px 0;
+      font-weight: 500;
+      line-height: 1.2em;
+    }
+
+    h1 {
+      font-size: 50px;
+    }
+
+    h2 {
+      font-size: 40px;
+    }
+
+    h3 {
+      font-size: 25px;
+    }
+
+    h4 {
+      font-size: 20px;
+    }
+
+    h5 {
+      font-size: 15px;
+    }
+
+    h6 {
+      font-size: 13px;
+    }
+
+    p,
+    div {
+      margin-top: 0;
+      line-height: 1.5em;
+    }
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    ul {
+      margin: 0 0 25px 0;
+      padding-left: 20px;
+      list-style: square outside none;
+    }
+
+    ol {
+      padding-left: 20px;
+      margin-bottom: 25px;
+    }
+
+    dfn,
+    cite,
+    em,
+    i {
+      font-style: italic;
+    }
+
+    blockquote {
+      margin: 0 15px;
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1.6em;
+      margin: 0;
+    }
+
+    address {
+      margin: 0 0 15px;
+    }
+
+    img {
+      border: 0;
+      max-width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #2ad19d;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    a:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    table {
+      width: 100%;
+      caption-side: bottom;
+      border-collapse: collapse;
+    }
+
+    th {
+      text-align: left;
+    }
+
+    td {
+      border-top: 1px solid #eaeaea;
+    }
+
+    td,
+    th {
+      padding: 10px 15px;
+      line-height: 1.55em;
+      vertical-align: middle;
+    }
+
+    dl {
+      margin-bottom: 25px;
+    }
+
+    dl dt {
+      font-weight: 600;
+    }
+
+    b,
+    strong {
+      font-weight: bold;
+    }
+
+    pre {
+      color: #777777;
+      border: 1px solid #eaeaea;
+      font-size: 18px;
+      padding: 25px;
+      border-radius: 5px;
+    }
+
+    kbd {
+      font-size: 100%;
+      background-color: #777777;
+      border-radius: 5px;
+    }
+
+
+    /*--------------------------------------------------------------
+3. Invoice General Style
+----------------------------------------------------------------*/
+
+    .cs-f10 {
+      font-size: 8px;
+    }
+
+    .cs-f11 {
+      font-size: 9px;
+    }
+
+    .cs-f12 {
+      font-size: 10px;
+    }
+
+    .cs-f13 {
+      font-size: 11px;
+    }
+
+    .cs-f14 {
+      font-size: 12px;
+    }
+
+    .cs-f15 {
+      font-size: 13px;
+    }
+
+    .cs-f16 {
+      font-size: 14px;
+    }
+
+    .cs-f17 {
+      font-size: 15px;
+    }
+
+    .cs-f18 {
+      font-size: 16px;
+    }
+
+    .cs-f19 {
+      font-size: 17px;
+    }
+
+    .cs-f20 {
+      font-size: 18px;
+    }
+
+    .cs-f21 {
+      font-size: 19px;
+    }
+
+    .cs-f22 {
+      font-size: 20px;
+    }
+
+    .cs-f23 {
+      font-size: 21px;
+    }
+
+    .cs-f24 {
+      font-size: 22px;
+    }
+
+    .cs-f25 {
+      font-size: 23px;
+    }
+
+    .cs-f26 {
+      font-size: 24px;
+    }
+
+    .cs-f27 {
+      font-size: 25px;
+    }
+
+    .cs-f28 {
+      font-size: 26px;
+    }
+
+    .cs-f29 {
+      font-size: 27px;
+    }
+
+    .cs-light {
+      font-weight: 300;
+    }
+
+    .cs-normal {
+      font-weight: 400;
+    }
+
+    .cs-medium {
+      font-weight: 500;
+    }
+
+    .cs-semi_bold {
+      font-weight: 600;
+    }
+
+    .cs-bold {
+      font-weight: 700;
+    }
+
+    .cs-m0 {
+      margin: 0px !important;
+    }
+
+    .cs-mb0 {
+      margin-bottom: 0px;
+    }
+
+    .cs-mb1 {
+      margin-bottom: 1px;
+    }
+
+    .cs-mb2 {
+      margin-bottom: 2px;
+    }
+
+    .cs-mb3 {
+      margin-bottom: 3px;
+    }
+
+    .cs-mb4 {
+      margin-bottom: 4px;
+    }
+
+    .cs-mb5 {
+      margin-bottom: 5px;
+    }
+
+    .cs-mb6 {
+      margin-bottom: 6px;
+    }
+
+    .cs-mb7 {
+      margin-bottom: 7px;
+    }
+
+    .cs-mb8 {
+      margin-bottom: 8px;
+    }
+
+    .cs-mb9 {
+      margin-bottom: 9px;
+    }
+
+    .cs-mb10 {
+      margin-bottom: 10px;
+    }
+
+    .cs-mb11 {
+      margin-bottom: 11px;
+    }
+
+    .cs-mb12 {
+      margin-bottom: 12px;
+    }
+
+    .cs-mb13 {
+      margin-bottom: 13px;
+    }
+
+    .cs-mb14 {
+      margin-bottom: 14px;
+    }
+
+    .cs-mb15 {
+      margin-bottom: 15px;
+    }
+
+    .cs-mb16 {
+      margin-bottom: 16px;
+    }
+
+    .cs-mb17 {
+      margin-bottom: 17px;
+    }
+
+    .cs-mb18 {
+      margin-bottom: 18px;
+    }
+
+    .cs-mb19 {
+      margin-bottom: 19px;
+    }
+
+    .cs-mb20 {
+      margin-bottom: 20px;
+    }
+
+    .cs-mb21 {
+      margin-bottom: 21px;
+    }
+
+    .cs-mb22 {
+      margin-bottom: 22px;
+    }
+
+    .cs-mb23 {
+      margin-bottom: 23px;
+    }
+
+    .cs-mb24 {
+      margin-bottom: 24px;
+    }
+
+    .cs-mb25 {
+      margin-bottom: 25px;
+    }
+
+    .cs-mb26 {
+      margin-bottom: 26px;
+    }
+
+    .cs-mb27 {
+      margin-bottom: 27px;
+    }
+
+    .cs-mb28 {
+      margin-bottom: 28px;
+    }
+
+    .cs-mb29 {
+      margin-bottom: 29px;
+    }
+
+    .cs-mb30 {
+      margin-bottom: 30px;
+    }
+
+    .cs-mb40 {
+      margin-bottom: 40px;
+    }
+
+    .cs-mb50 {
+      margin-bottom: 50px;
+    }
+
+    .cs-mb70 {
+      margin-bottom: 70px;
+    }
+
+    .cs-mb80 {
+      margin-bottom: 100px;
+    }
+
+    .cs-mr5 {
+      margin-right: 5px;
+    }
+
+    .cs-mr10 {
+      margin-right: 10px;
+    }
+
+    .cs-mr15 {
+      margin-right: 15px;
+    }
+
+    .cs-mr20 {
+      margin-right: 20px;
+    }
+
+    .cs-mr22 {
+      margin-right: 22px;
+    }
+
+    .cs-mr28 {
+      margin-right: 28px;
+    }
+
+    .cs-mt30 {
+      margin-top: 30px;
+    }
+
+    .cs-mt50 {
+      margin-top: 50px;
+    }
+
+    .cs-mr50 {
+      margin-right: 50px;
+    }
+
+    .cs-mr60 {
+      margin-right: 50px;
+    }
+
+    .cs-mr120 {
+      margin-right: 120px;
+    }
+
+    .cs-mr97 {
+      margin-right: 97px;
+    }
+
+    .cs-ml10 {
+      margin-left: 10px;
+    }
+
+    .cs-mt5 {
+      margin-top: 5px;
+    }
+
+    .cs-mt12 {
+      margin-top: 12px;
+    }
+
+    .cs-mt20 {
+      margin-top: 20px;
+    }
+
+    .cs-mt25 {
+      margin-top: 25px;
+    }
+
+    .cs-mt30 {
+      margin-top: 30px;
+    }
+
+    .cs-mt100 {
+      margin-top: 100px;
+    }
+
+    .cs-pt25 {
+      padding-top: 25px;
+    }
+
+    .cs-p0 {
+      padding: 0px !important;
+    }
+
+    .cs-p50 {
+      padding: 50px !important;
+    }
+
+    .cs-p-t5 {
+      padding-top: 5px !important;
+    }
+
+    .cs-p-t10 {
+      padding-top: 10px !important;
+    }
+
+    .cs-p-b5 {
+      padding-bottom: 5px !important;
+    }
+
+    .cs-p-b10 {
+      padding-bottom: 10px !important;
+    }
+
+    .cs-p-25-50 {
+      padding: 25px 50px !important;
+    }
+
+    .cs-width_1 {
+      width: 8%;
+    }
+
+    .cs-width_2 {
+      width: 16.66666667%;
+    }
+
+    .cs-width_3 {
+      width: 50%;
+    }
+
+    .cs-width_4 {
+      width: 33.33333333%;
+    }
+
+    .cs-width_5 {
+      width: 41.66666667%;
+    }
+
+    .cs-width_6 {
+      width: 50%;
+    }
+
+    .cs-width_7 {
+      width: 58.33333333%;
+    }
+
+    .cs-width_8 {
+      width: 66.66666667%;
+    }
+
+    .cs-width_9 {
+      width: 75%;
+    }
+
+    .cs-width_10 {
+      width: 83.33333333%;
+    }
+
+    .cs-width_11 {
+      width: 91.66666667%;
+    }
+
+    .cs-width_12 {
+      width: 100%;
+    }
+
+    /* Auto-fit column width to content */
+    .cs-width-fit {
+      width: 1px;
+      white-space: nowrap;
+    }
+
+    /* Image column styling - 120x120px with vertical centering */
+    .cs-image-column {
+      width: 120px;
+      height: 120px;
+      text-align: center;
+      vertical-align: middle;
+      padding: 4px;
+    }
+
+    /* Ensure table layout works properly in DomPDF */
+    .cs-table_responsive table {
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    .cs-accent_color,
+    .cs-accent_color_hover:hover {
+      color: #2ad19d;
+    }
+
+    .cs-accent_bg,
+    .cs-accent_bg_hover:hover {
+      background-color: #2ad19d;
+    }
+
+    .cs-primary_color {
+      color: #111111;
+    }
+
+    .cs-secondary_color {
+      color: #777777;
+    }
+
+    .cs-ternary_color {
+      color: #353535;
+    }
+
+    .cs-dip_green_color {
+      color: #2AD19D;
+    }
+
+    .cs-ternary_color {
+      border-color: #eaeaea;
+    }
+
+    .cs-focus_bg {
+      background: #f6f6f6;
+    }
+
+    .cs-white_bg {
+      background: #ffffff;
+    }
+
+    .cs-accent_10_bg {
+      background-color: rgba(42, 209, 157, 0.1);
+    }
+
+    .cs-container {
+      max-width: 95%;
+      padding: 10px 5px;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 10;
+    }
+
+    .cs-container.style1 {
+      max-width: 400px;
+    }
+
+    .cs-text_center {
+      text-align: center;
+    }
+
+    .cs-text_right {
+      text-align: right;
+    }
+
+    .cs-border_bottom_0 {
+      border-bottom: 0;
+    }
+
+    .cs-border_top_0 {
+      border-top: 0;
+    }
+
+    .cs-border_bottom {
+      border-bottom: 1px solid #eaeaea;
+    }
+
+    .cs-border_top {
+      border-top: 1px solid #eaeaea;
+    }
+
+    .cs-border_left {
+      border-left: 1px solid #eaeaea;
+    }
+
+    .cs-border_right {
+      border-right: 1px solid #eaeaea;
+    }
+
+    .cs-table_baseline {
+      vertical-align: baseline;
+    }
+
+    .cs-round_border {
+      border: none;
+      overflow: hidden;
+      border-radius: 6px;
+    }
+
+    .cs-border_none {
+      border: none;
+    }
+
+    /* Product items table border */
+    .cs-table.cs-style1 .cs-round_border {
+      border: 1px solid #ddd;
+    }
+
+    .cs-border_left_none {
+      border-left-width: 0;
+    }
+
+    .cs-border_right_none {
+      border-right-width: 0;
+    }
+
+    .cs-invoice.cs-style1 {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      border: none;
+    }
+
+    .cs-invoice.cs-style1.padding_40 {
+      padding: 40px;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_head {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_head.cs-type1 {
+      padding-bottom: 25px;
+      border-bottom: none;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_head.cs-type1.border-bottom-none {
+      border-bottom: none;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_footer {
+      display: block;
+      width: 100%;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_footer table {
+      margin-top: -1px;
+    }
+
+    .cs-invoice.cs-style1 .cs-left_footer {
+      display: none !important;
+      width: 0% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    .cs-invoice.cs-style1 .cs-right_footer {
+      width: 100% !important;
+      display: block !important;
+      float: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .cs-invoice.cs-style1 .cs-right_footer table {
+      width: 100% !important;
+      table-layout: fixed !important;
+      margin: 0 !important;
+    }
+
+    .cs-invoice.cs-style1 .cs-note {
+      display: table;
+      width: 100%;
+      margin-top: 40px;
+    }
+
+    .cs-invoice.cs-style1 .cs-note_left {
+      margin-right: 10px;
+      margin-top: 6px;
+      margin-left: -5px;
+      display: table;
+    }
+
+    .cs-invoice.cs-style1 .cs-note_left svg {
+      width: 32px;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_left {
+      max-width: 55%;
+    }
+
+    /* Footer horizontal alignment - use float approach for better DomPDF compatibility */
+    .cs-invoice.cs-style1 .cs-invoice_head.cs-mb10 .cs-invoice_left {
+      float: left;
+      width: 50%;
+      text-align: left;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_head.cs-mb10 .cs-invoice_right {
+      float: right;
+      width: 50%;
+      text-align: right;
+    }
+
+    /* Clear float after footer */
+    .cs-invoice.cs-style1 .cs-invoice_head.cs-mb10::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_left.w-60 {
+      max-width: 60%;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_left.w-65 {
+      max-width: 65%;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_left.w-70 {
+      max-width: 70%;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_left.w-75 {
+      max-width: 75%;
+    }
+
+    .cs-invoice.cs-style1 .cs-invoice_left.w-80 {
+      max-width: 80%;
+    }
+
+    .cs-invoice_btns {
+      display: table;
+      margin-top: 30px;
+    }
+
+    .cs-invoice_btns .cs-invoice_btn:first-child {
+      border-radius: 5px 0 0 5px;
+    }
+
+    .cs-invoice_btns .cs-invoice_btn:last-child {
+      border-radius: 0 5px 5px 0;
+    }
+
+    .cs-invoice_btn {
+      display: inline-table;
+      border: none;
+      font-weight: 600;
+      padding: 8px 20px;
+      cursor: pointer;
+    }
+
+    .cs-invoice_btn svg {
+      width: 24px;
+      margin-right: 5px;
+    }
+
+    .cs-invoice_btn.cs-color1 {
+      color: #111111;
+      background: rgba(42, 209, 157, 0.15);
+    }
+
+    .cs-invoice_btn.cs-color1:hover {
+      background-color: rgba(42, 209, 157, 0.3);
+    }
+
+    .cs-invoice_btn.cs-color2 {
+      color: #fff;
+      background: #2ad19d;
+    }
+
+    .cs-invoice_btn.cs-color2:hover {
+      background-color: rgba(42, 209, 157, 0.8);
+    }
+
+    .cs-table_responsive {
+      overflow-x: auto;
+    }
+
+    .cs-table_responsive>table {
+      min-width: 600px;
+    }
+
+    .cs-50_col>* {
+      width: 50%;
+    }
+
+    .cs-bar_list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      position: relative;
+    }
+
+    .cs-bar_list::before {
+      content: "";
+      height: 75%;
+      width: 2px;
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      background-color: #eaeaea;
+    }
+
+    .cs-bar_list li {
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .cs-bar_list li:before {
+      content: "";
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      background-color: #eaeaea;
+      position: absolute;
+      left: 0;
+      top: 6px;
+    }
+
+    .cs-bar_list li:not(:last-child) {
+      margin-bottom: 10px;
+    }
+
+    .cs-table.cs-style1.cs-type1 {
+      padding: 10px 30px;
+    }
+
+    .cs-table.cs-style1.cs-type1 tr:first-child td {
+      border-top: none;
+    }
+
+    .cs-table.cs-style1.cs-type1 tr td:first-child {
+      padding-left: 0;
+    }
+
+    .cs-table.cs-style1.cs-type1 tr td:last-child {
+      padding-right: 0;
+    }
+
+    .cs-table.cs-style1.cs-type2>* {
+      padding: 0 10px;
+    }
+
+    .cs-table.cs-style1.cs-type2 .cs-table_title {
+      padding: 20px 0 0 15px;
+      margin-bottom: -5px;
+    }
+
+    .cs-table.cs-style2 td {
+      border: none;
+    }
+
+    .cs-table.cs-style2 td,
+    .cs-table.cs-style2 th {
+      padding: 12px 15px;
+      line-height: 1.55em;
+    }
+
+    .cs-table.cs-style2 tr:not(:first-child) {
+      border-top: 1px dashed #eaeaea;
+    }
+
+    .cs-list.cs-style1 {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .cs-list.cs-style1 li {
+      display: table;
+    }
+
+    .cs-list.cs-style1 li:not(:last-child) {
+      border-bottom: 1px dashed #eaeaea;
+    }
+
+    .cs-list.cs-style1 li>* {
+      width: 50%;
+      padding: 7px 0px;
+    }
+
+    .cs-list.cs-style2 {
+      list-style: none;
+      margin: 0 0 30px 0;
+      padding: 12px 0;
+      border: 1px solid #eaeaea;
+      border-radius: 5px;
+    }
+
+    .cs-list.cs-style2 li {
+      display: table;
+    }
+
+    .cs-list.cs-style2 li>* {
+      padding: 5px 25px;
+    }
+
+    .cs-heading.cs-style1 {
+      line-height: 1.5em;
+      border-top: 1px solid #eaeaea;
+      border-bottom: 1px solid #eaeaea;
+      padding: 10px 0;
+    }
+
+    .cs-no_border {
+      border: none !important;
+    }
+
+    .cs-grid_row {
+      display: table;
+      width: 100%;
+      border-spacing: 20px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .cs-col_2 {
+      table-layout: fixed;
+    }
+
+    .cs-col_3 {
+      table-layout: fixed;
+    }
+
+    .cs-col_4 {
+      table-layout: fixed;
+    }
+
+    .cs-border_less td {
+      border-color: transparent;
+    }
+
+    .cs-special_item {
+      position: relative;
+    }
+
+    .cs-special_item:after {
+      content: "";
+      height: 52px;
+      width: 1px;
+      background-color: #eaeaea;
+      position: absolute;
+      top: 50%;
+      right: 0;
+    }
+
+    .cs-table.cs-style1 .cs-table.cs-style1 tr:not(:first-child) td {
+      border-color: #eaeaea;
+    }
+
+    .cs-table.cs-style1 .cs-table.cs-style2 td {
+      padding: 12px 0px;
+    }
+
+    .cs-ticket_wrap {
+      display: table;
+    }
+
+    .cs-ticket_right {
+      width: 215px;
+    }
+
+    .cs-box.cs-style1 {
+      border: none;
+      border-radius: 5px;
+      padding: 20px 10px;
+      min-width: 350px;
+      background-color: #f6f6f6;
+      color: #111111;
+    }
+
+    .cs-box.cs-style1.cs-type1 {
+      padding: 12px 10px 10px;
+    }
+
+    .cs-max_w_150 {
+      max-width: 150px;
+    }
+
+    .cs-left_auto {
+      margin-left: auto;
+    }
+
+    .cs-title_1 {
+      display: inline-block;
+      border-bottom: 1px solid #eaeaea;
+      min-width: 60%;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+
+    .cs-box2_wrap {
+      display: grid;
+      grid-gap: 30px;
+      list-style: none;
+      padding: 0;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cs-box.cs-style2 {
+      border: 1px solid #eaeaea;
+      padding: 25px 30px;
+      border-radius: 5px;
+    }
+
+    .cs-box.cs-style2 .cs-table.cs-style2 td {
+      padding: 12px 0;
+    }
+
+
+    /* Sifat */
+
+    .tm-align-item-center {
+      display: table;
+    }
+
+    .tm-bg-gray {
+      background-color: #f7f7f7;
+    }
+
+    .tm-border-radious-12 {
+      border-radius: 12px;
+    }
+
+    .tm-padding-outside {
+      padding: 12px 15px;
+    }
+
+    .tm-button-gray {
+      background-color: #f7f7f7;
+      border-radius: 12px;
+      padding: 12px 26px 12px 26px;
+    }
+
+    .tm-button-gray a {
+      color: #111111;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .tm-button-dark {
+      background-color: #111111;
+      border-radius: 8px;
+      padding: 12px 26px 12px 26px;
+    }
+
+    .tm-button-dark a {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .tm-button-primary {
+      background-color: #2ad19d;
+      border-radius: 8px;
+      padding: 12px 26px 12px 26px !important;
+    }
+
+    .tm-button-primary span {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .tm-button-primary svg {
+      color: #fff;
+    }
+
+    .cs-invoice_btn .tm-button-primary :last-child {
+      border-radius: 50px !important;
+    }
+
+    .tm-border {
+      border: 1px solid #eaeaea;
+    }
+
+    .tm-bg-none {
+      background: none !important;
+    }
+
+    .tm-p-16 p {
+      font-size: 12px;
+    }
+
+    .tm-p-16 td {
+      line-height: 10px !important;
+    }
+
+    .tm-consulting .tm-custom-td-padding {
+      padding: 10px 0px;
+    }
+
+    .tm-consulting .tm-custom-td-padding td {
+      line-height: 10px;
+    }
+
+    .tm-consulting .tm-consult-thead {
+      margin: 20px;
+      padding: 20px;
+    }
+
+    .tm-caption-txt {
+      background-color: rgba(42, 209, 157, 0.1);
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+
+    .tm-border-1px {
+      height: 1px;
+      background-color: #ececef;
+    }
+
+    .tm-border-none tr:not(:first-child) {
+      border-top: none !important;
+    }
+
+    .top {
+      top: 0px;
+    }
+
+
+    /* Position */
+
+    .position-relative {
+      position: relative;
+    }
+
+    .position-absolute {
+      position: absolute;
+    }
+
+    .text-transform-uppercase {
+      text-transform: uppercase;
+    }
+
+    .cs-table.cs-style2.padding-rignt-left td {
+      padding: 12px 0px;
+    }
+
+    .cs-table.cs-style2.padding-rignt-left th {
+      padding: 12px 0px;
+    }
+
+
+    /* Header style */
+
+    .top-header-section {
+      position: relative;
+      width: 100%;
+      background-position: center;
+      height: 130px;
+      background-repeat: no-repeat;
+      /* background-image: url(./img/Subtract.png); */
+      background-image: url(../img/Subtract.png);
+    }
+
+    .top-header-section .header-text {
+      position: relative;
+      display: table;
+      width: 100%;
+    }
+
+    .top-bottom-section {
+      position: relative;
+      width: 100%;
+      background-position: center;
+      height: 130px;
+      background-repeat: no-repeat;
+      /*    background-image: url(/assets/img/bg-bottom.png); */
+      background-image: url(../img/bg-bottom.png);
+    }
+
+    .flex-horizontal-center {
+      width: 100%;
+      display: table;
+    }
+
+    .cs-signature .signature-img {
+      width: 155.956px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #000;
+    }
+
+    .cs-signature P {
+      padding-top: 10px;
+    }
+
+
+    /* Border Start */
+
+    .cs-border-1 {
+      content: "";
+      height: 1px;
+      width: 100%;
+      margin-top: 9px;
+      border: 0.5px dashed rgba(73, 73, 73, 0.768627451);
+    }
+
+    .cs-border {
+      content: "";
+      height: 1px;
+      width: 100%;
+      border: 1px dashed rgba(73, 73, 73, 0.768627451);
+    }
+
+    .cs-border.border-none {
+      border: 0px dashed rgba(73, 73, 73, 0.768627451);
+    }
+
+    .cs-border_bottom.style_1 {
+      border-bottom: 1px dashed rgba(73, 73, 73, 0.768627451);
+    }
+
+
+    /* flex Satrt */
+
+    .display-flex {
+      display: table;
+    }
+
+    .gap-50 {
+      gap: 50px;
+    }
+
+    .gap-60 {
+      gap: 60px;
+    }
+
+    .gap-135 {
+      gap: 135px;
+    }
+
+
+    /* Sifat */
+
+    .cs-ml30 {
+      margin-left: 30px;
+    }
+
+    .cs-border-50percent {
+      height: 1px;
+      background-color: #777777;
+      width: 100%;
+    }
+
+    .cs-mt15 {
+      margin-top: 10px;
+    }
+
+    .cs-padding-outside {
+      border: 1px dashed #ececef;
+      padding: 30px 0px;
+      border-radius: 5px;
+    }
+
+    .cs-uppercase {
+      text-transform: uppercase;
+    }
+
+    .cs-mt70 {
+      margin-top: 70px;
+    }
+
+    .max-width120 {
+      max-width: 120px;
+    }
+
+    .max-width90 {
+      max-width: 90px;
+    }
+
+    .cs-top-bg {
+      background-image: url(../img/top-bg.png);
+      background-position: center top;
+      background-repeat: no-repeat;
+    }
+
+    .cs-bottom-bg {
+      background-image: url(../img/bottom-bg.png);
+      background-position: center bottom;
+      background-repeat: no-repeat;
+    }
+
+    .cs-top-bg2 {
+      background-image: url(../img/bg-top-2.png);
+      background-position: center top;
+      background-repeat: no-repeat;
+    }
+
+    .cs-bottom-bg2 {
+      background-image: url(../img/bg-bottom-2.png);
+      background-position: center bottom;
+      background-repeat: no-repeat;
+    }
+
+    .cs-bg-none {
+      background: none !important;
+    }
+
+    .cs-bg-white {
+      background: #fff;
+    }
+
+    .cs-border-radious25 {
+      border-radius: 25px !important;
+    }
+
+    .btn-blanck {
+      background: none;
+    }
+
+    .border-bottom-1 {
+      border-bottom: 1px solid #ececef;
+    }
+
+    .cs-fuss {
+      width: 1px;
+      height: 20px;
+      background-color: #ececef;
+      margin: 0px 20px;
+    }
+
+    .cs-text-cap {
+      border-bottom: 1px solid #2ad19d;
+      margin-top: 20px;
+    }
+
+    .copybtn {
+      cursor: pointer;
+    }
+
+    .border-top-zero {
+      border-top: 0;
+    }
+
+
+
+    img.item {
+      max-width: 120px;
+      max-height: 120px;
+      width: auto;
+      height: auto;
+      border-radius: 4px;
+      vertical-align: middle;
+    }
+
+    span.open-hour {
+      min-width: 60px;
+      display: inline-block;
+    }
+
+    @media (max-width: 767px) {
+      .cs-mobile_hide {
+        display: none;
+      }
+
+      .cs-invoice.cs-style1 {
+        padding: 30px 20px;
+      }
+
+      .cs-invoice.cs-style1 .cs-right_footer {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .cs-invoice.cs-style1 .cs-logo {
+        margin-bottom: 10px;
+      }
+
+
+      .cs-invoice.cs-style1 .cs-invoice_head.cs-type1 {
+        text-align: center;
+      }
+
+      .cs-invoice.cs-style1 .cs-invoice_head.cs-type1.column {
+        gap: 15px;
+      }
+
+      .cs-invoice.cs-style1 .cs-invoice_head .cs-text_right {
+        text-align: left;
+      }
+
+      .cs-list.cs-style2 li>* {
+        padding: 5px 20px;
+      }
+
+      .cs-grid_row {
+        grid-gap: 0px;
+      }
+
+      .cs-col_2,
+      .cs-col_3,
+      .cs-col_4 {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      .cs-table.cs-style1.cs-type1 {
+        padding: 0px 20px;
+      }
+
+      .cs-box2_wrap {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      .cs-box.cs-style1.cs-type1 {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .cs-invoice.cs-style1 .cs-invoice_left {
+        max-width: 100%;
+      }
+
+      .cs-invoice.cs-style1 .cs-invoice_left.w-60 {
+        max-width: 100%;
+      }
+
+      .cs-invoice.cs-style1 .cs-invoice_left.w-65 {
+        max-width: 100%;
+      }
+
+      .cs-invoice.cs-style1 .cs-invoice_left.w-70 {
+        max-width: 100%;
+      }
+
+      .cs-invoice.cs-style1 .cs-invoice_left.w-75 {
+        max-width: 100%;
+      }
+
+      .cs-invoice.cs-style1 .cs-invoice_left.w-80 {
+        max-width: 100%;
+      }
+
+      .cs-ml22 {
+        margin-left: 0px;
+      }
+
+      .cs-mr15 {
+        margin: 0px;
+      }
+
+      .cs-mt100 {
+        margin-top: 50px;
+      }
+
+      .gap-135 {}
+
+      .mq-align-items {
+        align-items: flex-end;
+      }
+    }
+
+    @media print {
+      .cs-hide_print {
+        display: none !important;
+      }
+
+      .cs-p-25-50 {
+        padding: 25px !important;
+      }
+
+      body {
+        background-color: #ffffff;
+        height: 100%;
+        overflow: hidden;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="cs-container">
+    <div class="cs-invoice cs-style1">
+      <div class="cs-invoice_in" id="download_section">
+        <div class="cs-invoice_head cs-type1 cs-mb25">
+          <div class="cs-table cs-style1">
+            <div>
+              <div class="cs-table_responsive">
+                <table>
+                  <tr>
+                    <td>
+                      <p class="cs-invoice_number cs-primary_color cs-mb5 cs-f26"><b class="cs-primary_color">Cenová
+                          nabídka #{{proposal_id}}</b>
+                      </p>
+                      <p class="cs-primary_color cs-m0">
+                        <b class="cs-primary_color">Datum zpracování: </b>{{date}}<br>
+                        <small>Cenová nabídka je platná do {{valid_until}}</small>
+                      </p>
+                    </td>
+                    <td>
+                      <div class="cs-invoice_right cs-text_right">
+                        <div class="cs-logo cs-mb5">
+                          <img
+                            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjYxIiB2aWV3Qm94PSIwIDAgMjAwIDYxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KICAgICAgICAgICAgICAgIDxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF8xOTZfMikiPg0KICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTIwMCA0MC40ODgzSDBWNDMuMDY0OUgyMDBWNDAuNDg4M1oiIGZpbGw9IiNFQzFDMjQiIC8+DQogICAgICAgICAgICAgICAgICA8cGF0aA0KICAgICAgICAgICAgICAgICAgICBkPSJNMTg5Ljc3MyAzMi4xMDE1QzE4OC4wNSAzMi42MDEgMTg2LjEzMSAzMi44MTE0IDE4My43OTEgMzIuODc3MUMxODAuMjgxIDMyLjc3MTkgMTc4Ljk4IDMyLjU2MTYgMTc4Ljk4IDMxLjQ5NjhDMTc4Ljk4IDMwLjkzMTUgMTc5LjUzMiAzMC4xMTY1IDE4MC4yODEgMjguOTQ2NUwxODMuNTE1IDIzLjkyNDhDMTg0Ljg5NSAyMS43Njg5IDE4Ni4zMjggMjAuNDI4IDE4Ni4zMjggMTkuNTczNkMxODYuMzI4IDE5LjA3NCAxODUuNDM0IDE4Ljc5OCAxODMuNjQ3IDE4Ljc5OEMxNzYuNjQgMTguNzk4IDE3OC4xNTIgMTkuNDQyMSAxNzYuMTU0IDIzLjQyNTNDMTczLjA2NCAyOS42ODI3IDE2OS42OTkgMzIuNzU4OCAxNjQuMTI1IDMyLjg2MzlDMTU5LjMxNCAzMi43MTkzIDE1Ni45MDggMzEuOTgzMiAxNTYuOTA4IDMwLjY2ODZDMTU2LjkwOCAzMC4xMDMzIDE1Ny4yNSAyOS4yMjI2IDE1OC4wMTIgMjcuOTQ3NEwxNjEuMzEyIDIyLjM2MDVMMTYyLjU0OCAyMC4yNDRMMTY2LjM5OSAxNC40MDczQzE2Ny4wODMgMTMuNDIxMyAxNjcuNTQzIDEyLjY4NTIgMTY3Ljc4IDEyLjI1MTNDMTY4LjE3NCAxMS40ODg5IDE2OS4xMzQgNi43ODI3IDE2Ni4xMSA2Ljc4MjdDMTYyLjE5MyA2Ljc4MjcgMTU5LjYwMyAxMi40MjIyIDE1OC4yODggMTQuNjU3TDE1NC45ODkgMjAuMjQ0TDE1My43NTMgMjIuMzYwNUwxNTAuOTQgMjcuNDg3M0MxNTAuOTQgMjcuNDg3MyAxNTAuNzgyIDI3Ljc2MzQgMTUwLjU3MiAyOC4xODRDMTQ4LjE2NiAzMS4yNDcgMTQ1LjM0IDMyLjc4NTEgMTQxLjQzNiAzMi44NjM5QzEzNi42MjQgMzIuNzE5MyAxMzQuMjE4IDMxLjk4MzIgMTM0LjIxOCAzMC42Njg2QzEzNC4yMTggMzAuMTAzMyAxMzQuNTYgMjkuMjIyNiAxMzUuMzIzIDI3Ljk0NzRMMTM4LjYyMiAyMi4zNjA1TDEzOS44NTggMjAuMjQ0TDE0My43MSAxNC40MDczQzE0NC4zOTMgMTMuNDIxMyAxNDQuODI3IDEyLjY3MiAxNDUuMDkgMTIuMjUxM0MxNDUuNTM3IDExLjQ4ODkgMTQ2LjgzOCA2Ljc4MjcgMTQzLjgxNSA2Ljc4MjdDMTM5Ljg5NyA2Ljc4MjcgMTM2LjkxMyAxMi40MjIyIDEzNS42MTIgMTQuNjU3TDEzMi4zMTIgMjAuMjQ0TDEzMS4wNzcgMjIuMzYwNUwxMjguMjYzIDI3LjQ4NzNDMTI4LjI2MyAyNy40ODczIDEyNi44MDQgMjkuOTk4MiAxMjYuOTA5IDMxLjc3MjhDMTI1LjE4NyAzMi4yNzI0IDEyMi45NTMgMzIuNTc0NyAxMjAuNjI2IDMyLjY1MzZIMTIwLjEzOUMxMTcuMTE2IDMyLjY1MzYgMTE0Ljk4NiAzMi4zMzgxIDExMi45ODggMzEuNDE3OUMxMjAuMjA1IDI4LjU5MTYgMTIzLjY0OSAyNC45MTA3IDEyMy42NDkgMjIuNTgzOUMxMjMuNjQ5IDIwLjAzMzcgMTIwLjY5MSAxOC41NDgyIDExNi4wOSAxOC41NDgyQzEwNy42MzggMTguNTQ4MiAxMDAuNjMxIDIyLjU4MzkgMTAwLjYzMSAyNy4xMDYxQzEwMC42MzEgMjguOTcyOCAxMDEuMzkzIDMwLjQ1ODMgMTAzLjE2OCAzMS42Njc3QzEwMC43MSAzMi4yMzI5IDk4LjIzODUgMzIuNTA5IDk1LjU1NjcgMzIuNjI3M0M5MS43OTcgMzIuNDY5NiA5MC40NjkzIDMyLjMyNSA5MC40NjkzIDMxLjM3ODVDOTAuNDY5MyAyOS4yNjIgOTUuODMyOCAyNS42ODYzIDk1LjgzMjggMjMuNDI1M0M5NS44MzI4IDIxLjU1ODYgOTIuNDAxNyAyMS4zMzUxIDg2LjQ4NjEgMTkuMzg5NUM4Ni45NzI1IDE4Ljg5IDg3LjE2OTcgMTguNDI5OSA4Ny4xNjk3IDE3LjkwNEM4Ny4xNjk3IDE2LjgxMjkgODUuNzIzNyAxNS45OTc5IDgzLjE4NjUgMTUuOTk3OUM4MC41MDQ4IDE1Ljk5NzkgNzguNTE5OCAxNy4yMzM2IDc4LjUxOTggMTguOTAzMUM3OC41MTk4IDE5LjY3ODcgNzkuMzg3NCAyMS45Mzk4IDgwLjAzMTUgMjAuODg4MUM3OC4xMTIzIDI0LjA0MzEgNzYuMTY2NyAyNi4zNjk5IDc0LjM5MiAyOC4wNjU3QzcxLjI1MDIgMzAuNjAyOSA2OC4zMDU1IDMyLjU0ODQgNjQuNzU2MSAzMi43OTgyQzYxLjE4MDUgMzIuNjUzNiA2MC4wNzYyIDMyLjQ4MjcgNjAuMDc2MiAzMS40NTczQzYwLjA3NjIgMzAuMTQyOCA2MS41MjIzIDI3LjcxMDggNjQuNTQ1OCAyNC4xMzUxQzY2LjgyIDIxLjQ1MzQgNjguNTI5IDIwLjExMjUgNjguNTI5IDE5Ljc1NzZDNjguNTI5IDE5LjAyMTQgNjUuODQ3MiAxOC4zNzczIDYyLjc1OCAxOC4zNzczQzYxLjMxMTkgMTguMzc3MyA2MS4wMzU5IDE4Ljc3MTcgNjAuNjI4NCAxOS40Njg0TDYwLjE0MiAyMC4yNDRDNTguMjIyNyAxOS4yNTgxIDU2LjIyNDUgMTguODYzNyA1My4zOTgyIDE4Ljg2MzdDNDcuNjI3MiAxOC44NjM3IDQyLjA1MzQgMjAuNTk4OSAzNy41MTgxIDIzLjk1MTFDMzYuMDA2MyAyNS4wNjg1IDM0Ljg3NTggMjYuMjEyMiAzNC4xMTMzIDI3LjI5MDFDMjkuNzg4MyAyOS45MzI0IDI1LjU1NTQgMzEuMjczMyAyMS42MjQ4IDMxLjI3MzNDMTguMTgwNiAzMS4yNzMzIDE2LjQ3MTcgMjkuOTk4MiAxNi40NzE3IDI3LjUyNjhDMTYuNDcxNyAyMy4yMTQ5IDIwLjc5NjYgMTYuNzA3OCAzMC4yMjIyIDkuNzQwNUMzNi40Nzk2IDUuMTEzMTkgNDIuMTE5MSAyLjgxMjY3IDQ1Ljc2MDUgMi44MTI2N0M0Ny43NTg2IDIuODEyNjcgNDguNzg0IDMuNDQzNjcgNDguNzg0IDQuNzk3NjlDNDguNzg0IDYuNjc3NTMgNDYuNzg1OCA4LjQ3ODUxIDQyLjk0NzMgOS42NzQ3N0MzOS41ODIgMTAuNzM5NiAzNy4yNDIgMTAuNjM0NCAzNy4yNDIgMTEuMzcwNkMzNy4yNDIgMTIuMTA2NyAzOC44OTg0IDEzLjQ2MDggNDAuMjY1NSAxMy40NjA4QzQxLjYzMjcgMTMuNDYwOCA0NS4wMTEyIDEyLjc1MDkgNDcuODkwMSAxMS41MTUyQzUyLjQyNTQgOS41MzAxNyA1NC44MzExIDcuMTM3NjQgNTQuODMxMSA0LjU0NzkyQzU0LjgzMTEgMS42NTU4NCA1MS44MDc1IC0wLjAxMzY3MTkgNDYuMzc4MyAtMC4wMTM2NzE5QzQwLjI2NTUgLTAuMDEzNjcxOSAzMS43MzM5IDIuNTYyOSAyMy42MjMgNy43MjkyQzEzLjIzNzggMTQuMzAyMSA3LjgwODU5IDIyLjIyOSA3LjgwODU5IDI3LjM4MjdDNy44MDg1OSAzMi41MzUzIDEyLjc1MTQgMzUuMTkwNyAyMC4yNDQ1IDM1LjE5MDdDMjQuMjI3NyAzNS4xOTA3IDI4LjYzMTUgMzQuMTI1OSAzMy4xOCAzMS45OTYzQzMzLjE4IDMxLjk5NjMgMzMuNDU2IDMyLjY5MyAzMy43OTc4IDMzLjE1MzFDMzQuMTM5NiAzMy42MTMzIDM0Ljc1NzUgMzQuMDg2NSAzNC43NTc1IDM0LjA4NjVDMzUuODYxNyAzNC44MzU4IDM3Ljg0NjcgMzUuMTc3NiA0MC4zMzEzIDM1LjE3NzZDNDUuODI2MiAzNS4xNzc2IDUwLjM2MTUgMzMuMDg3NCA1NC45NzU3IDI4Ljg1NDVDNTMuODcxNCAzMC41MTA4IDUzLjI1MzYgMzEuNzIwMyA1My4yNTM2IDMyLjYwMUM1My4yNTM2IDM0LjUwNzIgNTYuMTQ1NyAzNS4xMTE5IDYyLjgxMDYgMzUuMTExOUg2My4wNzM1QzYzLjA3MzUgMzUuMTExOSA2My4wMDc4IDM1LjE1MTMgNjIuOTY4MyAzNS4xNzc2TDYzLjA3MzUgMzUuMTExOUg2My40MTUzQzY3LjA1NjcgMzUuMDA2NyA2OC44OTcxIDM0LjUyMDMgNzEuNzg5MSAzMy4yNDUyTDcxLjgxNTQgMzMuMTkyNkM3Ni40NjkgMzEuMjIwNyA4MC4xMjM2IDI3LjYwNTYgODMuNzEyNCAyMi4yNDIxQzg2LjI0OTUgMjIuOTc4MyA4Ny41NjQxIDIzLjUxNzMgODcuNTY0MSAyNC4wNDMxQzg3LjU2NDEgMjUuODQ0MSA4Mi40NzY3IDI5LjI3NTEgODIuNDc2NyAzMS45MzA2QzgyLjQ3NjcgMzQuMTUyMiA4Ni4wOTE3IDM0Ljk2NzMgOTMuNzQyNiAzNC45NjczSDk0Ljg0NjhMOTQuODczMSAzNC45Mjc4Qzk4Ljg4MjYgMzQuNzU2OSAxMDIuODUzIDM0LjIwNDggMTA2Ljg2MiAzMy4yNDUyQzEwOS42MSAzNC40MTUxIDExMy4zOTYgMzQuOTgwNCAxMTguNDA0IDM0Ljk4MDRIMTE5LjI5OEMxMjIuODc0IDM0LjkxNDcgMTI2LjUwMiAzNC41MjAzIDEyOC45MDggMzMuODQ5OUMxMzEuMDI0IDM0LjcwNDQgMTM0LjU2IDM1LjE5MDcgMTM5LjMxOSAzNS4xOTA3SDE0MC4xNDdDMTQzLjgyOCAzNS4wODU2IDE0Ny4xOCAzNC4xNjU0IDE0OS44MjMgMzIuNjQwNUMxNDkuOTE1IDMyLjc5ODIgMTUwLjAzMyAzMi45NDI4IDE1MC4xOTEgMzMuMDYxMUMxNTEuOTEzIDM0LjQwMiAxNTUuOTYyIDM1LjE3NzYgMTYyLjAwOSAzNS4xNzc2SDE2Mi44MzdDMTY2LjYxIDM1LjA3MjQgMTY5LjU2NyAzNC4zMjMxIDE3Mi4yNDkgMzIuNzMyNUMxNzIuODAxIDM0LjQ2NzcgMTc1LjY5MyAzNS4xNzc2IDE4MS4zMiAzNS4xNzc2SDE4Mi40OUMxODYuMTk3IDM1LjExMTkgMTg5LjE5NCAzNC42MjU1IDE5MS41NiAzNC4wODY1QzE5My43NTYgMzMuNTg3IDE4OS43NzMgMzIuMDc1MiAxODkuNzczIDMyLjA3NTJNNDIuOTg2NyAzMi4yNzI0QzQxLjQwOTIgMzIuMjcyNCA0MC42NDY4IDMxLjc0NjYgNDAuNjQ2OCAzMC42MTZDNDAuNjQ2OCAyOS4yMzU3IDQyLjE1ODUgMjYuOTc0NiA0NS4zMTM1IDI0LjkyMzlDNDguNjEzMSAyMi44MDc0IDUyLjI1NDUgMjEuNjM3NCA1NC44MDQ4IDIxLjYzNzRDNTYuMDQwNSAyMS42Mzc0IDU3LjIxMDUgMjEuODg3MiA1OC4zODA0IDIyLjM0NzNDNTIuNjA5NCAyOC45NTk2IDQ3LjMxMTcgMzIuMjg1NSA0Mi45ODY3IDMyLjI4NTVNMTA4LjcxNiAyNy4wNDA0QzEwOC43MTYgMjQuMDAzNyAxMTIuMjI2IDIxLjQ1MzQgMTE1Ljc4OCAyMS40NTM0QzExNy41NzYgMjEuNDUzNCAxMTguNTM2IDIxLjk3OTIgMTE4LjUzNiAyMi45NzgzQzExOC41MzYgMjQuNjA4NCAxMTUuNjQzIDI3LjgxNiAxMTAuMjggMjkuNjMwMUMxMDkuMTEgMjguOTIwMiAxMDguNzAzIDI4LjEwNTIgMTA4LjcwMyAyNy4wNTM1TTE4NC43NTEgMTQuNTEyNEMxODYuODI4IDE0LjIxMDEgMTg4LjM2NiAxMy4wMTM4IDE4OC4xOTUgMTEuODMwN0MxODguMDI0IDEwLjY0NzYgMTg2LjIxIDkuOTI0NTQgMTg0LjEzMyAxMC4yMjY5QzE4Mi4wNTYgMTAuNTI5MyAxODAuNTE4IDExLjcyNTUgMTgwLjY4OSAxMi45MDg2QzE4MC44NiAxNC4wOTE4IDE4Mi42NzQgMTQuODAxNiAxODQuNzUxIDE0LjUxMjRaIg0KICAgICAgICAgICAgICAgICAgICBmaWxsPSIjRUMxQzI0IiAvPg0KICAgICAgICAgICAgICAgICAgPHBhdGgNCiAgICAgICAgICAgICAgICAgICAgZD0iTTEzLjM2ODggNTQuNzkxNkMxMy4zNjg4IDUzLjcyNjcgMTMuMzE2MyA1Mi42NDg4IDEzLjI2MzcgNTEuNTg0QzEzLjQ3NCA1MS42MjM0IDEzLjY3MTIgNTEuNjQ5NyAxMy44Njg0IDUxLjY0OTdDMTQuMDY1NiA1MS42NDk3IDE0LjI2MjggNTEuNjIzNCAxNC40NzMxIDUxLjU4NEMxNC40MjA1IDUyLjY0ODggMTQuMzY3OSA1My43MjY3IDE0LjM2NzkgNTQuNzkxNlY1Ni45MjEyQzE0LjM2NzkgNTcuOTg2IDE0LjQyMDUgNTkuMDYzOSAxNC40NzMxIDYwLjEyODdDMTQuMjYyOCA2MC4wODkzIDE0LjA2NTYgNjAuMDYzIDEzLjg2ODQgNjAuMDYzQzEzLjY3MTIgNjAuMDYzIDEzLjQ3NCA2MC4wODkzIDEzLjI2MzcgNjAuMTI4N0MxMy4zMTYzIDU5LjA2MzkgMTMuMzY4OCA1Ny45ODYgMTMuMzY4OCA1Ni45MjEyVjU0Ljc5MTZaIg0KICAgICAgICAgICAgICAgICAgICBmaWxsPSIjODA4MTg0IiAvPg0KICAgICAgICAgICAgICAgICAgPHBhdGgNCiAgICAgICAgICAgICAgICAgICAgZD0iTTIwLjE1MTkgNTQuNzkxNkMyMC4xNTE5IDUzLjkzNzEgMjAuMTUxOSA1My4wODI2IDIwLjExMjUgNTIuMjI4MUMxOS4yNTggNTIuMjI4MSAxOC4xNTM4IDUyLjI4MDcgMTcuNDU3IDUyLjM1OTZDMTcuNDk2NSA1Mi4yNDEzIDE3LjUyMjggNTIuMDk2NyAxNy41MjI4IDUxLjk2NTJDMTcuNTIyOCA1MS44NDY5IDE3LjQ5NjUgNTEuNzE1NCAxNy40NTcgNTEuNTg0QzE4LjUyMTggNTEuNjIzNCAxOS41ODY2IDUxLjY0OTcgMjAuNjUxNSA1MS42NDk3QzIxLjcxNjMgNTEuNjQ5NyAyMi43ODExIDUxLjYyMzQgMjMuODQ1OSA1MS41ODRDMjMuODA2NCA1MS43MTU0IDIzLjc4MDIgNTEuODQ2OSAyMy43ODAyIDUxLjk3ODRDMjMuNzgwMiA1Mi4wOTY3IDIzLjgwNjQgNTIuMjQxMyAyMy44NDU5IDUyLjM1OTZDMjMuMTQ5MiA1Mi4yNjc2IDIyLjA0NDkgNTIuMjI4MSAyMS4xOTA0IDUyLjIyODFDMjEuMTY0MSA1My4wODI2IDIxLjE1MSA1My45MzcxIDIxLjE1MSA1NC43OTE2VjU2LjkyMTJDMjEuMTUxIDU3Ljk4NiAyMS4yMDM2IDU5LjA2MzkgMjEuMjU2MiA2MC4xMjg3QzIxLjA0NTggNjAuMDg5MyAyMC44NDg2IDYwLjA2MyAyMC42NTE1IDYwLjA2M0MyMC40NTQzIDYwLjA2MyAyMC4yNTcxIDYwLjA4OTMgMjAuMDQ2OCA2MC4xMjg3QzIwLjA5OTMgNTkuMDYzOSAyMC4xNTE5IDU3Ljk4NiAyMC4xNTE5IDU2LjkyMTJWNTQuNzkxNloiDQogICAgICAgICAgICAgICAgICAgIGZpbGw9IiM4MDgxODQiIC8+DQogICAgICAgICAgICAgICAgICA8cGF0aA0KICAgICAgICAgICAgICAgICAgICBkPSJNMjkuMTMwOCA1MS40MjU4QzMwLjM0MDIgNTQuMzA0NyAzMi4yMDY5IDU4LjgxMzcgMzIuODY0MiA2MC4xNDE0QzMyLjY0MDcgNjAuMTAyIDMyLjQzMDQgNjAuMDc1NyAzMi4yMDY5IDYwLjA3NTdDMzEuOTgzNCA2MC4wNzU3IDMxLjc3MzEgNjAuMTAyIDMxLjU0OTYgNjAuMTQxNEMzMS4zMTMgNTkuMjg3IDMwLjcyMTQgNTcuOTE5OCAzMC4yNzQ1IDU2LjgxNTZDMjkuNzM1NSA1Ni44MTU2IDI5LjE5NjUgNTYuNzg5MyAyOC42NTc1IDU2Ljc4OTNDMjguMTQ0OCA1Ni43ODkzIDI3LjY1ODUgNTYuNzg5MyAyNy4xNDU4IDU2LjgxNTZDMjYuNjE5OSA1OC4wOTA3IDI2LjE1OTggNTkuMzUyNyAyNS45NDk1IDYwLjE0MTRDMjUuNzkxOCA2MC4xMDIgMjUuNjM0IDYwLjA3NTcgMjUuNDg5NCA2MC4wNzU3QzI1LjM0NDggNjAuMDc1NyAyNS4xODcgNjAuMTAyIDI1LjAyOTMgNjAuMTQxNEMyNi4zNTcgNTcuMjM2MiAyNy42NDUzIDU0LjM1NzMgMjguOTA3MyA1MS40MjU4SDI5LjE0MzlIMjkuMTMwOFpNMjguNzEwMSA1My4wOTUzTDI3LjM1NjEgNTYuMjM3MUMyNy43ODk5IDU2LjIzNzEgMjguMjYzMiA1Ni4yNjM0IDI4LjY5NyA1Ni4yNjM0QzI5LjE1NzEgNTYuMjYzNCAyOS42MzAzIDU2LjI2MzQgMzAuMDkwNCA1Ni4yMzcxTDI4LjcxMDEgNTMuMDk1M1oiDQogICAgICAgICAgICAgICAgICAgIGZpbGw9IiM4MDgxODQiIC8+DQogICAgICAgICAgICAgICAgICA8cGF0aA0KICAgICAgICAgICAgICAgICAgICBkPSJNMzUuODg3NCA1NC43OTE2QzM1Ljg4NzQgNTMuNzI2NyAzNS44MzQ4IDUyLjY0ODggMzUuNzgyMiA1MS41ODRDMzUuOTkyNiA1MS42MjM0IDM2LjE4OTcgNTEuNjQ5NyAzNi4zODY5IDUxLjY0OTdDMzYuNTg0MSA1MS42NDk3IDM2Ljc4MTMgNTEuNjIzNCAzNi45OTE2IDUxLjU4NEMzNi45MzkxIDUyLjY0ODggMzYuODg2NSA1My43MjY3IDM2Ljg4NjUgNTQuNzkxNkMzNi44ODY1IDU2Ljg2ODYgMzYuOTEyOCA1OC4zNDA5IDM2LjkyNTkgNTkuNTUwM0MzOC4wOTU5IDU5LjU1MDMgMzkuMTA4MSA1OS41NTAzIDQwLjM0MzggNTkuMzkyNkM0MC4zMDQ0IDU5LjUxMDkgNDAuMjc4MSA1OS42NDIzIDQwLjI3ODEgNTkuNzYwN0M0MC4yNzgxIDU5Ljg3OSA0MC4zMDQ0IDYwLjAxMDQgNDAuMzQzOCA2MC4xMjg3QzM5LjU4MTQgNjAuMDg5MyAzOC44MTg5IDYwLjA2MyAzOC4wNjk2IDYwLjA2M0MzNy4zMjAzIDYwLjA2MyAzNi41NDQ3IDYwLjA4OTMgMzUuNzgyMiA2MC4xMjg3QzM1LjgzNDggNTkuMDYzOSAzNS44ODc0IDU3Ljk4NiAzNS44ODc0IDU2LjkyMTJWNTQuNzkxNloiDQogICAgICAgICAgICAgICAgICAgIGZpbGw9IiM4MDgxODQiIC8+DQogICAgICAgICAgICAgICAgICA8cGF0aA0KICAgICAgICAgICAgICAgICAgICBkPSJNNDMuNjk2IDU0Ljc5MTZDNDMuNjk2IDUzLjcyNjcgNDMuNjQzNCA1Mi42NDg4IDQzLjU5MDggNTEuNTg0QzQzLjgwMTIgNTEuNjIzNCA0My45OTgzIDUxLjY0OTcgNDQuMTk1NSA1MS42NDk3QzQ0LjM5MjcgNTEuNjQ5NyA0NC41ODk5IDUxLjYyMzQgNDQuODAwMiA1MS41ODRDNDQuNzQ3NyA1Mi42NDg4IDQ0LjY5NTEgNTMuNzI2NyA0NC42OTUxIDU0Ljc5MTZWNTYuOTIxMkM0NC42OTUxIDU3Ljk4NiA0NC43NDc3IDU5LjA2MzkgNDQuODAwMiA2MC4xMjg3QzQ0LjU4OTkgNjAuMDg5MyA0NC4zOTI3IDYwLjA2MyA0NC4xOTU1IDYwLjA2M0M0My45OTgzIDYwLjA2MyA0My44MDEyIDYwLjA4OTMgNDMuNTkwOCA2MC4xMjg3QzQzLjY0MzQgNTkuMDYzOSA0My42OTYgNTcuOTg2IDQzLjY5NiA1Ni45MjEyVjU0Ljc5MTZaIg0KICAgICAgICAgICAgICAgICAgICBmaWxsPSIjODA4MTg0IiAvPg0KICAgICAgICAgICAgICAgICAgPHBhdGgNCiAgICAgICAgICAgICAgICAgICAgZD0iTTUxLjg1OTMgNTEuNDI1OEM1My4wNjg3IDU0LjMwNDcgNTQuOTM1NCA1OC44MTM3IDU1LjU5MjcgNjAuMTQxNEM1NS4zNjkyIDYwLjEwMiA1NS4xNTg5IDYwLjA3NTcgNTQuOTM1NCA2MC4wNzU3QzU0LjcxMTkgNjAuMDc1NyA1NC41MDE2IDYwLjEwMiA1NC4yNzgxIDYwLjE0MTRDNTQuMDQxNSA1OS4yODcgNTMuNDQ5OSA1Ny45MTk4IDUzLjAwMyA1Ni44MTU2QzUyLjQ2NCA1Ni44MTU2IDUxLjkyNSA1Ni43ODkzIDUxLjM4NiA1Ni43ODkzQzUwLjg3MzQgNTYuNzg5MyA1MC4zODcgNTYuNzg5MyA0OS44NzQzIDU2LjgxNTZDNDkuMzQ4NCA1OC4wOTA3IDQ4Ljg4ODMgNTkuMzUyNyA0OC42NzggNjAuMTQxNEM0OC41MjAzIDYwLjEwMiA0OC4zNjI1IDYwLjA3NTcgNDguMjE3OSA2MC4wNzU3QzQ4LjA3MzMgNjAuMDc1NyA0Ny45MTU2IDYwLjEwMiA0Ny43NTc4IDYwLjE0MTRDNDkuMDg1NSA1Ny4yMzYyIDUwLjM3MzggNTQuMzU3MyA1MS42MzU4IDUxLjQyNThINTEuODcyNEg1MS44NTkzWk01MS40NTE4IDUzLjA5NTNMNTAuMDk3OCA1Ni4yMzcxQzUwLjUzMTYgNTYuMjM3MSA1MS4wMDQ4IDU2LjI2MzQgNTEuNDM4NiA1Ni4yNjM0QzUxLjg5ODcgNTYuMjYzNCA1Mi4zNzIgNTYuMjYzNCA1Mi44MzIxIDU2LjIzNzFMNTEuNDUxOCA1My4wOTUzWiINCiAgICAgICAgICAgICAgICAgICAgZmlsbD0iIzgwODE4NCIgLz4NCiAgICAgICAgICAgICAgICAgIDxwYXRoDQogICAgICAgICAgICAgICAgICAgIGQ9Ik02NS42MSA2MC4yOTkyQzYzLjczMDEgNTguMDc3NSA2MS40NjkxIDU1LjY5ODIgNTkuMzUyNiA1My40NTAyQzU5LjM1MjYgNTMuOTEwMyA1OS4zMTMyIDU0LjY0NjUgNTkuMzEzMiA1NS45NjExQzU5LjMxMzIgNTcuMDI1OSA1OS4zNjU3IDU5LjY0MTkgNTkuNDE4MyA2MC4xNDE0QzU5LjI4NjkgNjAuMTAyIDU5LjEyOTEgNjAuMDc1NyA1OC45ODQ1IDYwLjA3NTdDNTguODM5OSA2MC4wNzU3IDU4LjY4MjIgNjAuMTAyIDU4LjUyNDQgNjAuMTQxNEM1OC42Mjk2IDU5LjU2MyA1OC43ODczIDU2LjM4MTcgNTguNzg3MyA1NC43NTE3QzU4Ljc4NzMgNTMuMTIxNiA1OC43ODczIDUxLjk5MTEgNTguNzQ3OSA1MS40MjU4SDU4Ljk0NTFDNjAuOTY5NSA1My42MjExIDYzLjcwMzkgNTYuNjA1MiA2NS4yMTU2IDU4LjEzMDFDNjUuMjE1NiA1NS45MDg1IDY1LjIxNTYgNTMuNDg5NyA2NS4xMTA1IDUxLjU4MzVDNjUuMjQxOSA1MS42MjMgNjUuMzk5NyA1MS42NDkzIDY1LjUzMTEgNTEuNjQ5M0M2NS42NjI2IDUxLjY0OTMgNjUuNzk0IDUxLjYyMyA2NS45MjU1IDUxLjU4MzVDNjUuODQ2NiA1Mi4zMTk3IDY1LjcyODMgNTQuNzY0OCA2NS43MjgzIDU1LjczNzZDNjUuNzI4MyA1Ni45OTk2IDY1Ljc1NDYgNTkuNzMzOSA2NS43Njc3IDYwLjI5OTJINjUuNTk2OEg2NS42MVoiDQogICAgICAgICAgICAgICAgICAgIGZpbGw9IiM4MDgxODQiIC8+DQogICAgICAgICAgICAgICAgICA8cGF0aA0KICAgICAgICAgICAgICAgICAgICBkPSJNNzQuOTMwNCA1NC43OTE2Qzc0LjkzMDQgNTMuNzI2NyA3NC44Nzc4IDUyLjY0ODggNzQuODI1MiA1MS41ODRDNzUuNDQzIDUxLjYyMzQgNzYuMDc0IDUxLjY0OTcgNzYuNjkxOSA1MS42NDk3Qzc3LjMwOTggNTEuNjQ5NyA3Ny45NDA3IDUxLjU4NCA3OC41NTg2IDUxLjU4NEM4MS40NjM4IDUxLjU4NCA4Mi42NDY5IDUzLjEzNTIgODIuNjQ2OSA1NS42ODU1QzgyLjY0NjkgNTguOTk4MiA4MC4wOTY3IDYwLjEyODcgNzguMTM3OSA2MC4xMjg3Qzc3LjU4NTggNjAuMTI4NyA3Ny4wMzM3IDYwLjA2MyA3Ni40ODE2IDYwLjA2M0M3NS45Mjk0IDYwLjA2MyA3NS4zNzczIDYwLjA4OTMgNzQuODI1MiA2MC4xMjg3Qzc0Ljg3NzggNTkuMDYzOSA3NC45MzA0IDU3Ljk4NiA3NC45MzA0IDU2LjkyMTJWNTQuNzkxNlpNNzUuOTU1NyA1Ni45MjEyQzc1Ljk1NTcgNTcuODAxOSA3NS45ODIgNTguNjk1OSA3Ni4wMzQ2IDU5LjU1MDNDNzYuMzc2NCA1OS42MjkyIDc3LjAyMDUgNTkuNjY4NiA3Ny42NTE1IDU5LjY2ODZDNzkuNDc4OCA1OS42Njg2IDgxLjQ1MDcgNTguOTQ1NiA4MS40NTA3IDU1LjY3MjNDODEuNDUwNyA1Mi43OTM0IDc5Ljk2NTIgNTIuMDk2NyA3Ny45Mjc2IDUyLjA5NjdDNzcuMTkxNCA1Mi4wOTY3IDc2LjUyMSA1Mi4xNjI0IDc2LjAyMTUgNTIuMjE1Qzc1Ljk2ODkgNTMuMDAzNyA3NS45NDI2IDUzLjg4NDUgNzUuOTQyNiA1NC43Nzg0VjU2LjkwOEw3NS45NTU3IDU2LjkyMTJaIg0KICAgICAgICAgICAgICAgICAgICBmaWxsPSIjODA4MTg0IiAvPg0KICAgICAgICAgICAgICAgICAgPHBhdGgNCiAgICAgICAgICAgICAgICAgICAgZD0iTTg2LjE4MzMgNTQuNzc4NEM4Ni4xODMzIDUzLjcxMzYgODYuMTMwNyA1Mi42MzU2IDg2LjA3ODEgNTEuNTg0Qzg2LjgyNzQgNTEuNjIzNCA4Ny41NTA0IDUxLjY0OTcgODguMjk5OCA1MS42NDk3Qzg5LjA0OTEgNTEuNjQ5NyA4OS43NzIxIDUxLjYyMzQgOTAuNTA4MiA1MS41ODRDOTAuNDgyIDUxLjcwMjMgOTAuNDY4OCA1MS44MzM4IDkwLjQ2ODggNTEuOTUyMUM5MC40Njg4IDUyLjA3MDQgOTAuNDY4OCA1Mi4yMDE4IDkwLjUwODIgNTIuMzIwMUM4OS40Njk3IDUyLjI0MTMgODguODY1IDUyLjE2MjQgODcuMjQ4MSA1Mi4xNjI0Qzg3LjI0ODEgNTIuNzAxNCA4Ny4xOTU1IDUzLjEzNTIgODcuMTk1NSA1My43Mzk5Qzg3LjE5NTUgNTQuMzg0IDg3LjE5NTUgNTUuMDY3NiA4Ny4xOTU1IDU1LjM3Qzg4LjY1NDcgNTUuMzcgODkuNDY5NyA1NS4zMDQyIDkwLjIwNTkgNTUuMjUxN0M5MC4xNzk2IDU1LjM3IDkwLjE2NjUgNTUuNTE0NiA5MC4xNjY1IDU1LjYzMjlDOTAuMTY2NSA1NS43NTEyIDkwLjE2NjUgNTUuODgyNyA5MC4yMDU5IDU2LjAwMUM4OS4zNTE0IDU1LjkwODkgODcuNzg3MSA1NS44OTU4IDg3LjE5NTUgNTUuODk1OEM4Ny4xOTU1IDU2LjE5ODIgODcuMTk1NSA1Ni41MDA1IDg3LjE5NTUgNTcuNjk2OEM4Ny4xOTU1IDU4LjY0MzMgODcuMTk1NSA1OS4yNDggODcuMjIxOCA1OS41NTAzQzg4LjMyNiA1OS41NTAzIDg5Ljc4NTIgNTkuNTUwMyA5MC41NzQgNTkuMzkyNkM5MC41NDc3IDU5LjQ5NzcgOTAuNTM0NSA1OS42Njg2IDkwLjUzNDUgNTkuNzczOEM5MC41MzQ1IDU5Ljg3OSA5MC41MzQ1IDYwLjAyMzYgOTAuNTc0IDYwLjEyODdDODkuODM3OCA2MC4wODkzIDg5LjEwMTYgNjAuMDYzIDg4LjMzOTIgNjAuMDYzQzg3LjU3NjcgNjAuMDYzIDg2Ljg0MDYgNjAuMDg5MyA4Ni4wNzgxIDYwLjEyODdDODYuMTMwNyA1OS4wNTA4IDg2LjE4MzMgNTcuOTcyOCA4Ni4xODMzIDU2LjkwOFY1NC43Nzg0WiINCiAgICAgICAgICAgICAgICAgICAgZmlsbD0iIzgwODE4NCIgLz4NCiAgICAgICAgICAgICAgICAgIDxwYXRoDQogICAgICAgICAgICAgICAgICAgIGQ9Ik05My43Mjk0IDU4LjQ4NTFDOTQuMDA1NSA1OS4wNjM1IDk0LjYyMzMgNTkuNzczNCA5NS42ODgxIDU5Ljc3MzRDOTYuNzUyOSA1OS43NzM0IDk3LjQ2MjggNTguOTcxNSA5Ny40NjI4IDU3Ljk3MjRDOTcuNDYyOCA1NS42OTgyIDkzLjU1ODUgNTYuNjcxIDkzLjU1ODUgNTMuNzY1N0M5My41NTg1IDUyLjM4NTQgOTQuNTk3IDUxLjQyNTggOTYuMjUzNCA1MS40MjU4Qzk3LjAyOSA1MS40MjU4IDk3LjU5NDMgNTEuNjA5OCA5OC4wOTM4IDUyLjAwNDJDOTcuOTQ5MiA1Mi4yOTM0IDk3Ljg1NzIgNTIuNTY5NSA5Ny43NjUyIDUzLjA0MjdIOTcuNjIwNkM5Ny40NDk3IDUyLjU4MjYgOTcuMDgxNiA1MS44NzI3IDk2LjE0ODIgNTEuODcyN0M5NS4yMTQ5IDUxLjg3MjcgOTQuNTQ0NSA1Mi41MDM3IDk0LjU0NDUgNTMuNDEwOEM5NC41NDQ1IDU1LjcyNDUgOTguNDQ4OCA1NC43NjQ4IDk4LjQ0ODggNTcuNDk5MUM5OC40NDg4IDU5LjAxMDkgOTcuMzE4MiA2MC4yODYgOTUuNDEyMSA2MC4yODZDOTQuMzg2NyA2MC4yODYgOTMuNzk1MSA1OS45MzExIDkzLjM2MTMgNTkuNTc2MkM5My41MDU5IDU5LjE5NDkgOTMuNTQ1NCA1OC45NDUyIDkzLjU5OCA1OC40NzE5SDkzLjc0MjZMOTMuNzI5NCA1OC40ODUxWiINCiAgICAgICAgICAgICAgICAgICAgZmlsbD0iIzgwODE4NCIgLz4NCiAgICAgICAgICAgICAgICAgIDxwYXRoDQogICAgICAgICAgICAgICAgICAgIGQ9Ik0xMDEuOCA1NC43OTE2QzEwMS44IDUzLjcyNjcgMTAxLjc0OCA1Mi42NDg4IDEwMS42OTUgNTEuNTg0QzEwMS45MDYgNTEuNjIzNCAxMDIuMTAzIDUxLjY0OTcgMTAyLjMgNTEuNjQ5N0MxMDIuNDk3IDUxLjY0OTcgMTAyLjY5NCA1MS42MjM0IDEwMi45MDUgNTEuNTg0QzEwMi44NTIgNTIuNjQ4OCAxMDIuOCA1My43MjY3IDEwMi44IDU0Ljc5MTZWNTYuOTIxMkMxMDIuOCA1Ny45ODYgMTAyLjg1MiA1OS4wNjM5IDEwMi45MDUgNjAuMTI4N0MxMDIuNjk0IDYwLjA4OTMgMTAyLjQ5NyA2MC4wNjMgMTAyLjMgNjAuMDYzQzEwMi4xMDMgNjAuMDYzIDEwMS45MDYgNjAuMDg5MyAxMDEuNjk1IDYwLjEyODdDMTAxLjc0OCA1OS4wNjM5IDEwMS44IDU3Ljk4NiAxMDEuOCA1Ni45MjEyVjU0Ljc5MTZaIg0KICAgICAgICAgICAgICAgICAgICBmaWxsPSIjODA4MTg0IiAvPg0KICAgICAgICAgICAgICAgICAgPHBhdGgNCiAgICAgICAgICAgICAgICAgICAgZD0iTTExMy45NjEgNTMuMDk1OEMxMTMuNDQ4IDUyLjQ5MTEgMTEyLjQ4OCA1MS44ODY0IDExMS4yMzkgNTEuODg2NEMxMDkuMTg5IDUxLjg4NjQgMTA3LjYxMSA1My4xMDkgMTA3LjYxMSA1NS44Njk2QzEwNy42MTEgNTguMzAxNiAxMDguOTc4IDU5Ljc4NyAxMTEuMzA1IDU5Ljc4N0MxMTIuMDE1IDU5Ljc4NyAxMTIuODcgNTkuNjU1NiAxMTMuMjkgNTkuMzkyN0MxMTMuMjkgNTguODkzMSAxMTMuMzE2IDU4LjQwNjcgMTEzLjMxNiA1Ny44OTRDMTEzLjMxNiA1Ny4zMTU2IDExMy4yNzcgNTYuNzEwOSAxMTMuMjUxIDU2LjE5ODJDMTEzLjQwOSA1Ni4yMzc3IDExMy42NDUgNTYuMjY0IDExMy44NDIgNTYuMjY0QzExNC4wMjYgNTYuMjY0IDExNC4yMSA1Ni4yNjQgMTE0LjM4MSA1Ni4xOTgyQzExNC4zNTUgNTYuNTY2MyAxMTQuMzI5IDU3LjM4MTMgMTE0LjMyOSA1OC43MDkxQzExNC4zMjkgNTkuMDI0NiAxMTQuMzI5IDU5LjM3OTUgMTE0LjMyOSA1OS43MDgxQzExMy42MTkgNTkuOTU3OSAxMTIuMTMzIDYwLjI5OTcgMTExLjE3NCA2MC4yOTk3QzEwOC4yMjkgNjAuMjk5NyAxMDYuMzg5IDU4Ljc2MTcgMTA2LjM4OSA1NS44Njk2QzEwNi4zODkgNTIuOTc3NSAxMDguMjk1IDUxLjQzOTUgMTExLjIzOSA1MS40Mzk1QzExMi45MDkgNTEuNDM5NSAxMTMuODE2IDUxLjg0NyAxMTQuMzk0IDUyLjE2MjVDMTE0LjI3NiA1Mi4zODU5IDExNC4xNDUgNTIuODA2NiAxMTQuMTA1IDUzLjEyMjFIMTEzLjk2MVY1My4wOTU4WiINCiAgICAgICAgICAgICAgICAgICAgZmlsbD0iIzgwODE4NCIgLz4NCiAgICAgICAgICAgICAgICAgIDxwYXRoDQogICAgICAgICAgICAgICAgICAgIGQ9Ik0xMjUuMDgyIDYwLjI5OTJDMTIzLjIwMiA1OC4wNzc1IDEyMC45NDEgNTUuNjk4MiAxMTguODI0IDUzLjQ1MDJDMTE4LjgyNCA1My45MTAzIDExOC43ODUgNTQuNjQ2NSAxMTguNzg1IDU1Ljk2MTFDMTE4Ljc4NSA1Ny4wMjU5IDExOC44MzcgNTkuNjQxOSAxMTguODkgNjAuMTQxNEMxMTguNzU5IDYwLjEwMiAxMTguNjAxIDYwLjA3NTcgMTE4LjQ1NiA2MC4wNzU3QzExOC4zMTIgNjAuMDc1NyAxMTguMTU0IDYwLjEwMiAxMTcuOTk2IDYwLjE0MTRDMTE4LjEwMSA1OS41NjMgMTE4LjI1OSA1Ni4zODE3IDExOC4yNTkgNTQuNzUxN0MxMTguMjU5IDUzLjEyMTYgMTE4LjI1OSA1MS45OTExIDExOC4yMiA1MS40MjU4SDExOC40MTdDMTIwLjQ0MSA1My42MjExIDEyMy4xNzYgNTYuNjA1MiAxMjQuNjg3IDU4LjEzMDFDMTI0LjY4NyA1NS45MDg1IDEyNC42ODcgNTMuNDg5NyAxMjQuNTgyIDUxLjU4MzVDMTI0LjcxNCA1MS42MjMgMTI0Ljg3MSA1MS42NDkzIDEyNS4wMDMgNTEuNjQ5M0MxMjUuMTM0IDUxLjY0OTMgMTI1LjI2NiA1MS42MjMgMTI1LjM5NyA1MS41ODM1QzEyNS4zMTggNTIuMzE5NyAxMjUuMiA1NC43NjQ4IDEyNS4yIDU1LjczNzZDMTI1LjIgNTYuOTk5NiAxMjUuMjI2IDU5LjczMzkgMTI1LjIzOSA2MC4yOTkySDEyNS4wNjlIMTI1LjA4MloiDQogICAgICAgICAgICAgICAgICAgIGZpbGw9IiM4MDgxODQiIC8+DQogICAgICAgICAgICAgICAgICA8cGF0aA0KICAgICAgICAgICAgICAgICAgICBkPSJNMTM0LjE0IDU4LjQ4NTFDMTM0LjQxNiA1OS4wNjM1IDEzNS4wMzMgNTkuNzczNCAxMzYuMDk4IDU5Ljc3MzRDMTM3LjE2MyA1OS43NzM0IDEzNy44NzMgNTguOTcxNSAxMzcuODczIDU3Ljk3MjRDMTM3Ljg3MyA1NS42OTgyIDEzMy45NjkgNTYuNjcxIDEzMy45NjkgNTMuNzY1N0MxMzMuOTY5IDUyLjM4NTQgMTM1LjAwNyA1MS40MjU4IDEzNi42NjQgNTEuNDI1OEMxMzcuNDM5IDUxLjQyNTggMTM4LjAwNCA1MS42MDk4IDEzOC41MDQgNTIuMDA0MkMxMzguMzU5IDUyLjI5MzQgMTM4LjI2NyA1Mi41Njk1IDEzOC4xNzUgNTMuMDQyN0gxMzguMDMxQzEzNy44NiA1Mi41ODI2IDEzNy40OTIgNTEuODcyNyAxMzYuNTU4IDUxLjg3MjdDMTM1LjYyNSA1MS44NzI3IDEzNC45NTUgNTIuNTAzNyAxMzQuOTU1IDUzLjQxMDhDMTM0Ljk1NSA1NS43MjQ1IDEzOC44NTkgNTQuNzY0OCAxMzguODU5IDU3LjQ5OTFDMTM4Ljg1OSA1OS4wMTA5IDEzNy43MjggNjAuMjg2IDEzNS44MjIgNjAuMjg2QzEzNC43OTcgNjAuMjg2IDEzNC4yMDUgNTkuOTMxMSAxMzMuNzcxIDU5LjU3NjJDMTMzLjkxNiA1OS4xOTQ5IDEzMy45NTYgNTguOTQ1MiAxMzQuMDA4IDU4LjQ3MTlIMTM0LjE1M0wxMzQuMTQgNTguNDg1MVoiDQogICAgICAgICAgICAgICAgICAgIGZpbGw9IiM4MDgxODQiIC8+DQogICAgICAgICAgICAgICAgICA8cGF0aA0KICAgICAgICAgICAgICAgICAgICBkPSJNMTQzLjk0NiA1NC43OTE2QzE0My45NDYgNTMuOTM3MSAxNDMuOTQ2IDUzLjA4MjYgMTQzLjkwNiA1Mi4yMjgxQzE0My4wNTIgNTIuMjI4MSAxNDEuOTQ4IDUyLjI4MDcgMTQxLjI1MSA1Mi4zNTk2QzE0MS4yOSA1Mi4yNDEzIDE0MS4zMTcgNTIuMDk2NyAxNDEuMzE3IDUxLjk2NTJDMTQxLjMxNyA1MS44NDY5IDE0MS4yOSA1MS43MTU0IDE0MS4yNTEgNTEuNTg0QzE0Mi4zMTYgNTEuNjIzNCAxNDMuMzgxIDUxLjY0OTcgMTQ0LjQ0NSA1MS42NDk3QzE0NS41MSA1MS42NDk3IDE0Ni41NzUgNTEuNjIzNCAxNDcuNjQgNTEuNTg0QzE0Ny42IDUxLjcxNTQgMTQ3LjU3NCA1MS44NDY5IDE0Ny41NzQgNTEuOTc4NEMxNDcuNTc0IDUyLjA5NjcgMTQ3LjYgNTIuMjQxMyAxNDcuNjQgNTIuMzU5NkMxNDYuOTQzIDUyLjI2NzYgMTQ1LjgzOSA1Mi4yMjgxIDE0NC45ODQgNTIuMjI4MUMxNDQuOTU4IDUzLjA4MjYgMTQ0Ljk0NSA1My45MzcxIDE0NC45NDUgNTQuNzkxNlY1Ni45MjEyQzE0NC45NDUgNTcuOTg2IDE0NC45OTggNTkuMDYzOSAxNDUuMDUgNjAuMTI4N0MxNDQuODQgNjAuMDg5MyAxNDQuNjQzIDYwLjA2MyAxNDQuNDQ1IDYwLjA2M0MxNDQuMjQ4IDYwLjA2MyAxNDQuMDUxIDYwLjA4OTMgMTQzLjg0MSA2MC4xMjg3QzE0My44OTMgNTkuMDYzOSAxNDMuOTQ2IDU3Ljk4NiAxNDMuOTQ2IDU2LjkyMTJWNTQuNzkxNloiDQogICAgICAgICAgICAgICAgICAgIGZpbGw9IiM4MDgxODQiIC8+DQogICAgICAgICAgICAgICAgICA8cGF0aA0KICAgICAgICAgICAgICAgICAgICBkPSJNMTU3LjEwNSA1MS41ODM1QzE1Ny4yNjIgNTEuNjIyOSAxNTcuNDMzIDUxLjY0OTIgMTU3LjYxNyA1MS42NDkyQzE1Ny43MzYgNTEuNjQ5MiAxNTcuODggNTEuNjIyOSAxNTcuOTg1IDUxLjU4MzVDMTU3Ljg4IDUyLjc0MDMgMTU3Ljc4OCA1NC45MjI1IDE1Ny43NjIgNTYuNzIzNUMxNTcuNzM2IDU4LjkxODggMTU2LjQ2IDYwLjI4NiAxNTQuMjI2IDYwLjI4NkMxNTEuNzY3IDYwLjI4NiAxNTAuNjc2IDU5LjE0MjMgMTUwLjY3NiA1Ni43MzY2QzE1MC42NzYgNTUuOTc0MiAxNTAuNzQyIDU1LjM5NTcgMTUwLjc0MiA1NC43Nzc5QzE1MC43NDIgNTMuNDEwNyAxNTAuNjg5IDUyLjI5MzMgMTUwLjY2MyA1MS41NzAzQzE1MC44NiA1MS42MDk3IDE1MS4xMSA1MS42MzYgMTUxLjMwNyA1MS42MzZDMTUxLjQ3OCA1MS42MzYgMTUxLjY3NSA1MS42MDk3IDE1MS44NDYgNTEuNTcwM0MxNTEuNzY3IDUyLjMwNjUgMTUxLjcwMiA1My45ODkxIDE1MS43MDIgNTUuODE2NEMxNTEuNzAyIDU3LjQ5OTEgMTUxLjcwMiA1OS42OTQ0IDE1NC40NjIgNTkuNjk0NEMxNTcuMjIzIDU5LjY5NDQgMTU3LjE3IDU3LjE1NzMgMTU3LjE3IDU1LjU5MjlDMTU3LjE3IDUzLjIzOTggMTU3LjE3IDUyLjA0MzYgMTU3LjA5MSA1MS41NzAzIg0KICAgICAgICAgICAgICAgICAgICBmaWxsPSIjODA4MTg0IiAvPg0KICAgICAgICAgICAgICAgICAgPHBhdGgNCiAgICAgICAgICAgICAgICAgICAgZD0iTTE2MS45ODIgNTQuNzkxNkMxNjEuOTgyIDUzLjcyNjcgMTYxLjkzIDUyLjY0ODggMTYxLjg3NyA1MS41ODRDMTYyLjQ5NSA1MS42MjM0IDE2My4xMjYgNTEuNjQ5NyAxNjMuNzQ0IDUxLjY0OTdDMTY0LjM2MiA1MS42NDk3IDE2NC45OTMgNTEuNTg0IDE2NS42MSA1MS41ODRDMTY4LjUxNiA1MS41ODQgMTY5LjY5OSA1My4xMzUyIDE2OS42OTkgNTUuNjg1NUMxNjkuNjk5IDU4Ljk5ODIgMTY3LjE0OCA2MC4xMjg3IDE2NS4xOSA2MC4xMjg3QzE2NC42MzggNjAuMTI4NyAxNjQuMDg1IDYwLjA2MyAxNjMuNTMzIDYwLjA2M0MxNjIuOTgxIDYwLjA2MyAxNjIuNDI5IDYwLjA4OTMgMTYxLjg3NyA2MC4xMjg3QzE2MS45MyA1OS4wNjM5IDE2MS45ODIgNTcuOTg2IDE2MS45ODIgNTYuOTIxMlY1NC43OTE2Wk0xNjIuOTk0IDU2LjkyMTJDMTYyLjk5NCA1Ny44MDE5IDE2My4wMjEgNTguNjk1OSAxNjMuMDczIDU5LjU1MDNDMTYzLjQxNSA1OS42MjkyIDE2NC4wNTkgNTkuNjY4NiAxNjQuNjkgNTkuNjY4NkMxNjYuNTE3IDU5LjY2ODYgMTY4LjQ4OSA1OC45NDU2IDE2OC40ODkgNTUuNjcyM0MxNjguNDg5IDUyLjc5MzQgMTY3LjAwNCA1Mi4wOTY3IDE2NC45NjYgNTIuMDk2N0MxNjQuMjMgNTIuMDk2NyAxNjMuNTYgNTIuMTYyNCAxNjMuMDYgNTIuMjE1QzE2My4wMDcgNTMuMDAzNyAxNjIuOTgxIDUzLjg4NDUgMTYyLjk4MSA1NC43Nzg0VjU2LjkwOEwxNjIuOTk0IDU2LjkyMTJaIg0KICAgICAgICAgICAgICAgICAgICBmaWxsPSIjODA4MTg0IiAvPg0KICAgICAgICAgICAgICAgICAgPHBhdGgNCiAgICAgICAgICAgICAgICAgICAgZD0iTTE3My4yMjEgNTQuNzkxNkMxNzMuMjIxIDUzLjcyNjcgMTczLjE2OSA1Mi42NDg4IDE3My4xMTYgNTEuNTg0QzE3My4zMjcgNTEuNjIzNCAxNzMuNTI0IDUxLjY0OTcgMTczLjcyMSA1MS42NDk3QzE3My45MTggNTEuNjQ5NyAxNzQuMTE1IDUxLjYyMzQgMTc0LjMyNiA1MS41ODRDMTc0LjI3MyA1Mi42NDg4IDE3NC4yMiA1My43MjY3IDE3NC4yMiA1NC43OTE2VjU2LjkyMTJDMTc0LjIyIDU3Ljk4NiAxNzQuMjczIDU5LjA2MzkgMTc0LjMyNiA2MC4xMjg3QzE3NC4xMTUgNjAuMDg5MyAxNzMuOTE4IDYwLjA2MyAxNzMuNzIxIDYwLjA2M0MxNzMuNTI0IDYwLjA2MyAxNzMuMzI3IDYwLjA4OTMgMTczLjExNiA2MC4xMjg3QzE3My4xNjkgNTkuMDYzOSAxNzMuMjIxIDU3Ljk4NiAxNzMuMjIxIDU2LjkyMTJWNTQuNzkxNloiDQogICAgICAgICAgICAgICAgICAgIGZpbGw9IiM4MDgxODQiIC8+DQogICAgICAgICAgICAgICAgICA8cGF0aA0KICAgICAgICAgICAgICAgICAgICBkPSJNMTgyLjIyNiA1MS40MjU4QzE4NC45NjEgNTEuNDI1OCAxODYuODggNTMuMDQyNyAxODYuODggNTUuODU1OUMxODYuODggNTguNjY5MSAxODQuOTc0IDYwLjI4NiAxODIuMjI2IDYwLjI4NkMxNzkuNDc5IDYwLjI4NiAxNzcuNTg2IDU4LjY2OTEgMTc3LjU4NiA1NS44NTU5QzE3Ny41ODYgNTMuMDQyNyAxNzkuNDkyIDUxLjQyNTggMTgyLjIyNiA1MS40MjU4Wk0xODIuMjI2IDUxLjg4NTlDMTgwLjI5NCA1MS44ODU5IDE3OC44MDkgNTMuMTA4NCAxNzguODA5IDU1Ljg2OTFDMTc4LjgwOSA1OC42Mjk3IDE4MC4yOTQgNTkuODUyMiAxODIuMjI2IDU5Ljg1MjJDMTg0LjE1OSA1OS44NTIyIDE4NS42NTcgNTguNjI5NyAxODUuNjU3IDU1Ljg2OTFDMTg1LjY1NyA1My4xMDg0IDE4NC4xNzIgNTEuODg1OSAxODIuMjI2IDUxLjg4NTlaIg0KICAgICAgICAgICAgICAgICAgICBmaWxsPSIjODA4MTg0IiAvPg0KICAgICAgICAgICAgICAgIDwvZz4NCiAgICAgICAgICAgICAgICA8ZGVmcz4NCiAgICAgICAgICAgICAgICAgIDxjbGlwUGF0aCBpZD0iY2xpcDBfMTk2XzIiPg0KICAgICAgICAgICAgICAgICAgICA8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjYwLjI5OTciIGZpbGw9IndoaXRlIiAvPg0KICAgICAgICAgICAgICAgICAgPC9jbGlwUGF0aD4NCiAgICAgICAgICAgICAgICA8L2RlZnM+DQogICAgICAgICAgICAgIDwvc3ZnPg==" />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="cs-invoice_left cs-box cs-style1">
+                        <b class="cs-primary_color">Odběratel:</b>
+                        <p>
+                          {{customer_name}}<br>
+                          {{customer_address}}<br>
+                          <br>
+                          <b class="cs-primary_color">Kontaktní telefon:</b> {{customer_phone}}<br>
+                          <b class="cs-primary_color">Kontaktní e-mail:</b> {{customer_email}}
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <b class="cs-primary_color">Dodavatel:</b>
+                      <p>
+                        CARELLI nábytek, spol. s r.o.<br>
+                        Vrbenská 2044/6<br>
+                        37001 České Budějovice, ČR<br>
+                        <br>
+                        IČO: 25231553<br>
+                        DIČ: CZ25231553<br>
+                        E-mail: info@carelli.cz<br>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="cs-table cs-style1">
+            <div class="cs-round_border">
+              <div class="cs-table_responsive">
+                <table>
+                  <thead>
+                    {{table_header}}
+                  </thead>
+                  <tbody>
+                    {{items}}
+                    <!-- end of line -->
+
+                  </tbody>
+                </table>
+              </div>
+              <div class="cs-invoice_footer cs-border_top">
+                <div class="cs-left_footer cs-mobile_hide">
+                  <p class="cs-mb0"><b class="cs-primary_color">Doplňující informace:</b></p>
+                  <p class="cs-m0">Lorem ipsum <br>dolor sit amet.</p>
+                </div>
+                <div class="cs-right_footer">
+                  <table>
+                    <tbody>
+                      <tr class="cs-border_left">
+                        <td class="cs-width_3 cs-primary_color cs-focus_bg">Cena bez DPH</td>
+                        <td class="cs-width_3 cs-focus_bg cs-primary_color cs-text_right">{{subtotal}}</td>
+                      </tr>
+                      <tr class="cs-border_left">
+                        <td class="cs-width_3 cs-primary_color cs-focus_bg">DPH ({{vat_percent}}%):</td>
+                        <td class="cs-width_3 cs-focus_bg cs-primary_color cs-text_right">{{vat}}</td>
+                      </tr>
+                      <tr class="cs-border_left">
+                        <td class="cs-width_3 cs-primary_color cs-focus_bg">Celková cena s DPH:</td>
+                        <td class="cs-width_3 cs-focus_bg cs-primary_color cs-text_right">{{total}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="cs-invoice_footer">
+              <div class="cs-left_footer cs-mobile_hide"></div>
+              <div class="cs-right_footer">
+                <table>
+                  <tbody>
+                    <tr class="cs-border_none">
+                      <td class="cs-width_3 cs-border_top_0 cs-f16 cs-primary_color"
+                        style="font-family: 'Inter', Arial, sans-serif; font-weight: 600; letter-spacing: -0.02em;">
+                        Celková cena:</td>
+                      <td class="cs-width_3 cs-border_top_0 cs-f16 cs-primary_color cs-text_right"
+                        style="font-family: 'Inter', Arial, sans-serif; font-weight: 600; letter-spacing: -0.02em;">
+                        {{total}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Custom Sections Placeholder -->
+          {{custom_sections}}
+
+          <div>&nbsp;<br>&nbsp;<br></div>
+          <div class="cs-invoice_head cs-mb10">
+            <div class="cs-invoice_left">
+              <b class="cs-primary_color">Showroom Carelli:</b>
+              <p class="cs-mb8">U Elektry 974/1c<br>190 00 Praha 9<br><table style="border-collapse: collapse; border: 0; margin: 0; padding: 0; border-spacing: 0; width: 140px;"><tr><td class="open-hour" style="border: 0; padding: 0; margin: 0; vertical-align: baseline; padding-right: 6px; white-space: nowrap;">Po — Čt:</td><td style="border: 0; padding: 0; margin: 0; vertical-align: baseline;">10.00—19.00</td></tr><tr><td class="open-hour" style="border: 0; padding: 0; margin: 0; vertical-align: baseline; padding-right: 6px; white-space: nowrap;">Pá:</td><td style="border: 0; padding: 0; margin: 0; vertical-align: baseline;">10.00—18.00</td></tr><tr><td class="open-hour" style="border: 0; padding: 0; margin: 0; vertical-align: baseline; padding-right: 6px; white-space: nowrap;">So:</td><td style="border: 0; padding: 0; margin: 0; vertical-align: baseline;">9.00—14.00</td></tr></table></p>
+              <p class="cs-mb8">www.carelli.cz</p>
+            </div>
+            <div class="cs-invoice_right cs-text_right">
+              <b class="cs-primary_color">Nabídku zpracoval:</b>
+              <p>
+                {{user_name}}<br>
+                Tel. {{user_phone}}<br>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

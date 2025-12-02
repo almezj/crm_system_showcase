@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="no-js" lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carelli - Detailní nabídka</title>
+    <style type="text/css">
+        @page {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Include Inter font definitions */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            src: url('Inter-Regular.otf') format('opentype');
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            src: url('Inter-SemiBold.otf') format('opentype');
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            src: url('Inter-Bold.otf') format('opentype');
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'DejaVu Sans', 'Liberation Sans', Arial, sans-serif !important;
+            line-height: 1.6;
+            color: #333;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .proposal-info {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .proposal-info .left, .proposal-info .right {
+            flex: 1;
+        }
+
+        .proposal-info p {
+            margin: 8px 0;
+        }
+
+        .customer-info {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .customer-info h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .items-table th {
+            background: #2c3e50;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .items-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .items-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .summary h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .summary p {
+            margin: 8px 0;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Detailní nabídka</h1>
+    </div>
+
+    <div class="proposal-info">
+        <div class="left">
+            <p><strong>Číslo nabídky:</strong> {{proposal_id}}</p>
+            <p><strong>Datum vytvoření:</strong> {{date}}</p>
+        </div>
+        <div class="right">
+            <p><strong>Platnost do:</strong> {{valid_until}}</p>
+            <p><strong>Zpracoval:</strong> {{processed_by}}</p>
+        </div>
+    </div>
+
+    <div class="customer-info">
+        <h2>Informace o zákazníkovi</h2>
+        <p><strong>Jméno:</strong> {{customer_name}}</p>
+        <p><strong>Adresa:</strong> {{customer_address}}</p>
+        <p><strong>Telefon:</strong> {{customer_phone}}</p>
+        <p><strong>Email:</strong> {{customer_email}}</p>
+    </div>
+
+    <div class="items-section">
+        <h2>Položky nabídky</h2>
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Název položky</th>
+                    <th>Množství</th>
+                    <th>Cena za kus</th>
+                    <th>Celková cena</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{items_table}}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="summary">
+        <h2>Souhrn</h2>
+        <p><strong>Celkový počet položek:</strong> {{total_items}}</p>
+        <p><strong>Celková cena:</strong> {{total_price}} Kč</p>
+    </div>
+
+    <div class="footer">
+        <p>Carelli - Váš partner pro kvalitní produkty</p>
+        <p>Děkujeme za vaši důvěru</p>
+    </div>
+</body>
+</html> 

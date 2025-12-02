@@ -1,0 +1,111 @@
+.piece-selector {
+  /* Component container styles */
+}
+
+.piece-selector .material-card {
+  transition: all 0.2s ease-in-out;
+  border: 2px solid transparent;
+}
+
+.piece-selector .material-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.piece-selector .material-card.border-primary {
+  border-color: #0d6efd !important;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.piece-selector .form-check-input:checked {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.piece-selector .form-check-label {
+  cursor: pointer;
+  width: 100%;
+}
+
+.piece-selector .card {
+  transition: all 0.2s ease-in-out;
+}
+
+.piece-selector .card:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Material browser styles */
+.material-browser .material-card {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.material-browser .material-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.material-browser .material-card.border-primary {
+  border-color: #0d6efd !important;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.material-browser .card-footer {
+  border-top: none;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .piece-selector .col-md-6,
+  .piece-selector .col-lg-4 {
+    margin-bottom: 1rem;
+  }
+  
+  .material-browser .col-md-6,
+  .material-browser .col-lg-4,
+  .material-browser .col-xl-3 {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Loading states */
+.piece-selector .spinner-border {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Table styles */
+.piece-selector .table th {
+  font-weight: 600;
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.piece-selector .table td {
+  vertical-align: middle;
+}
+
+/* Button styles */
+.piece-selector .btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Image styles */
+.piece-selector img {
+  object-fit: cover;
+  border-radius: 0.375rem;
+}
+
+/* Form styles */
+.piece-selector .form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.piece-selector .form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+} 
